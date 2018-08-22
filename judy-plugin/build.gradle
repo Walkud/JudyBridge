@@ -1,0 +1,27 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    implementation gradleApi()//gradle sdk
+    implementation localGroovy()//groovy sdk
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation  'com.android.tools.build:gradle:3.1.3'
+    implementation  'de.defmacro:eclipse-astparser:8.1'
+}
+
+
+
+repositories {
+    mavenCentral()
+}
+
+group='com.walkud.judy.plugin'
+version='1.0.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("../repo"))
+        }
+    }
+}
