@@ -26,7 +26,11 @@ import java.util.List;
 import javax.lang.model.element.Modifier;
 
 /**
- * 模块注解解析
+ * 模块注解解析与抽象类生成
+ * 主要功能如下：
+ * 1、解析JudyBridge java源文件
+ * 2、根据解析信息，构建对应抽象类内容生成对象(TypeSpec)
+ * 3、在指定路径下生成抽象类
  * Created by Zhuliya on 2018/7/6
  */
 public class ModuleParse {
@@ -136,11 +140,12 @@ public class ModuleParse {
         String returnTypeName = methodDeclaration.getReturnType2().toString();
         //生成泛型返回类型
         TypeName typeName = getTypeName(returnTypeName, true);
-        TypeName retrunType = ParameterizedTypeName.get(TypeUtil.JUDY_RESULT_CLASS, typeName);
+        //暂时不需要再包一层，增加开发工作量且意义不大，如果需要，开发者可自行添加
+//        TypeName retrunType = ParameterizedTypeName.get(TypeUtil.JUDY_RESULT_CLASS, typeName);
 
         //构建方法返回值、修饰符、方法名称
         MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder(methodDeclaration.getName().toString())
-                .returns(retrunType)//返回类型
+                .returns(typeName)//返回类型
                 .addModifiers(Modifier.PUBLIC)//设置为公开
                 .addModifiers(Modifier.ABSTRACT);//设置为抽象
 

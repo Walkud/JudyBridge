@@ -4,12 +4,13 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeName;
 
 /**
+ * 类型 ClassName 工具类
  * Created by Zhuliya on 2018/8/10
  */
 public class TypeUtil {
 
     /**
-     * 生成代理接口的被代理类的目标注解类型
+     * 生成代理接口的被抽象类的目标注解类型
      */
     public static final ClassName TARGET_CLASS = ClassName.get("com.walkud.judy.annontations", "TargetClass");
     /**

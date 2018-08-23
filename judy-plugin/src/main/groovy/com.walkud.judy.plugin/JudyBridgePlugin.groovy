@@ -4,10 +4,12 @@ import com.android.build.gradle.api.BaseVariant
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
+import com.walkud.judy.plugin.utils.AndroidHelper
+import com.walkud.judy.plugin.utils.MLog
 
 /**
  * Judy Bridge apply插件
- * 1、根据变种构建代码解析与生成代理类源文件的任务，并注册至registerJavaGeneratingTask
+ * 1、根据变种构建代码解析与生成抽象类源文件的任务，并注册至registerJavaGeneratingTask
  * 2、创建一个独立执行的任务组(judy)
  * Created by Zhuliya on 2018/8/10
  */
@@ -15,7 +17,7 @@ class JudyBridgePlugin implements Plugin<Project> {
 
     Project project
     /**
-     * 生成的代理类源文件路径
+     * 生成的抽象类源文件路径
      */
     def outBuildDir
     /**
@@ -51,7 +53,7 @@ class JudyBridgePlugin implements Plugin<Project> {
     }
 
     /**
-     * 创建生成代理类源文件Task
+     * 创建生成抽象类源文件Task
      * @param project
      * @param isExceNow 是否立即执行
      * @return

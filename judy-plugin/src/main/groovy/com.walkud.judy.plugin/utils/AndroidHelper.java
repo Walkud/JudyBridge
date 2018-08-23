@@ -12,6 +12,10 @@ import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 辅助工具类
+ * Created by Zhuliya on 2018/8/10
+ */
 public class AndroidHelper {
 
     public static String getSeparator() {

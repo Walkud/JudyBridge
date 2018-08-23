@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.walkud.judy.login">
+
+    <application>
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="登录" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+apply plugin: 'judy.bridge'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+//参考ConfigExtension
+judyConfig {
+    parseFileSuffix "Judy"//模块文件的后缀名规则，用于遍历文件时判断并快速过滤不需要解析文件，可以提升构建速度
+    proxyFileSuffix "Bridge"//生成代理接口文件的后缀名,默认值："Bridge"，生成后的抽象接口文件名为："XXXBridge"
+    logDebug true//是否输出debug日志信息，默认：false,不输出
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    api 'com.android.support:appcompat-v7:28.0.0-rc01'
+    api "com.android.support:design:28.0.0-rc01"
+    api project(':judy-api')
+}

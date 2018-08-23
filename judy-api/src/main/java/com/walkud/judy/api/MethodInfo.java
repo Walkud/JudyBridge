@@ -1,5 +1,7 @@
 package com.walkud.judy.api;
 
+import android.util.Log;
+
 import com.walkud.judy.annontations.TargetClass;
 
 import java.lang.annotation.Annotation;
@@ -18,6 +20,7 @@ public class MethodInfo {
     MethodInfo(Method method) {
         annotations = method.getAnnotations();
         TargetClass targetClass = method.getDeclaringClass().getAnnotation(TargetClass.class);
+
         try {
             cls = Class.forName(targetClass.value());
         } catch (ClassNotFoundException e) {
@@ -25,11 +28,12 @@ public class MethodInfo {
         }
 
         if (cls == null) {
-            //目标方法不存在TargetClass注解，查看生成的Java文件
-            throw new IllegalArgumentException("Not found tragetClass");
+            //目标方法不存在TargetClass注解，检查模块间依赖关系，是否正确依赖
+            throw new IllegalArgumentException("Not found tragetClass , please check module dependencies");
         }
 
         try {
+            //反射获取对应方法
             this.method = cls.getMethod(method.getName(), method.getParameterTypes());
             this.method.setAccessible(true);//优化反射
         } catch (NoSuchMethodException e) {

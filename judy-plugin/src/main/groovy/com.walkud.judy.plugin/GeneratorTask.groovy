@@ -1,13 +1,20 @@
 package com.walkud.judy.plugin
 
 import com.walkud.judy.plugin.model.ModuleParse
+import com.walkud.judy.plugin.utils.MLog
+import com.walkud.judy.plugin.utils.AndroidHelper
 import org.eclipse.jdt.core.dom.*
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.tasks.TaskAction
 
 /**
- * 代码解析与生成代理类源文件的任务
+ * 代码解析与生成抽象类源文件的任务
+ * 主要功能如下：
+ * 1、创建抽象类生成的目录
+ * 2、遍历rootProject下所有module，记录需要扫描的java文件路径(输入路径)
+ * 3、递归遍历输入路径，找到JudyBridge java源文件
+ * 4、解析并生成抽象类
  * Created by Zhuliya on 2018/8/10
  */
 class GeneratorTask extends DefaultTask {
@@ -87,14 +94,12 @@ class GeneratorTask extends DefaultTask {
                     if (modifier instanceof MarkerAnnotation) {
                         //判断指定注解
                         MarkerAnnotation annotation = (MarkerAnnotation) modifier
-                        if ("ModuleApi" == annotation.typeName.toString()) {
+                        if ("JudyBridge" == annotation.typeName.toString()) {
                             ModuleParse moduleParse = new ModuleParse(result, configExtension)
                             moduleParse.writeTo(outDir, packageId)
                         }
                     }
                 }
-
-
             }
         }
 

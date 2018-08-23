@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import java.lang.reflect.Method;
 
 /**
- * 最终调用目标方法
+ * 通过反射调用目标方法
  * Created by Zhuliya on 2018/7/2
  */
 class ServiceMethodInvoke<T> extends ServiceMethod<T> {
@@ -16,6 +16,12 @@ class ServiceMethodInvoke<T> extends ServiceMethod<T> {
         this.methodInfo = methodInfo;
     }
 
+    /**
+     * 反射调用目标类方法
+     *
+     * @param args
+     * @return
+     */
     @Override
     @SuppressWarnings("unchecked")
     T invoke(@Nullable Object[] args) {

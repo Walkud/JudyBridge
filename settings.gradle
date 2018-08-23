@@ -1,1 +1,2 @@
-include ':app',':judy-annotations', ':judy-plugin','judy-api'
+include ':app',':judy-annotations', ':judy-plugin', ':BaseLib','judy-api'
+include ':module:ModuleLogin', ':module:ModuleA'

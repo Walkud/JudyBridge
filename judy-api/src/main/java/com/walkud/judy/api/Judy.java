@@ -9,22 +9,44 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * JudyBridge 使用的主要入口类
+ * 使用动态代理、反射调用最终目标实现类方法
  * Created by Zhuliya on 2018/6/29
  */
 public class Judy {
 
+    /**
+     * 方法缓存，避免多次反射导致耗时
+     */
     private final Map<Method, ServiceMethod<?>> serviceMethodCache = new ConcurrentHashMap<>();
 
+    /**
+     * 单例
+     */
     private static class Hold {
         private static final Judy INSTANCE = new Judy();
     }
 
-    public static <T> T getService(Class<T> cls) {
-        return Hold.INSTANCE.create(cls);
+    /**
+     * 获取对应的JudyBridge
+     *
+     * @param cls
+     * @param <T>
+     * @return
+     */
+    public static <T> T getBridge(Class<T> cls) {
+        return Hold.INSTANCE.createBridge(cls);
     }
 
+    /**
+     * 创建动态代理
+     *
+     * @param cls
+     * @param <T>
+     * @return
+     */
     @SuppressWarnings("unchecked")
-    private <T> T create(Class<T> cls) {
+    private <T> T createBridge(Class<T> cls) {
         return (T) Proxy.newProxyInstance(cls.getClassLoader(), new Class<?>[]{cls},
                 new InvocationHandler() {
                     @Override
