@@ -30,7 +30,7 @@ import javax.lang.model.element.Modifier;
  * 主要功能如下：
  * 1、解析JudyBridge java源文件
  * 2、根据解析信息，构建对应抽象类内容生成对象(TypeSpec)
- * 3、在指定路径下生成抽象类
+ * 3、在指定路径下生成抽象类文件
  * Created by Zhuliya on 2018/7/6
  */
 public class ModuleParse {

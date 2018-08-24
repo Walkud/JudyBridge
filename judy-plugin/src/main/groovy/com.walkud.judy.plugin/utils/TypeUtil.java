@@ -12,7 +12,7 @@ public class TypeUtil {
     /**
      * 生成代理接口的被抽象类的目标注解类型
      */
-    public static final ClassName TARGET_CLASS = ClassName.get("com.walkud.judy.annontations", "TargetClass");
+    public static final ClassName TARGET_CLASS = ClassName.get("com.walkud.judy.api.annontations", "TargetClass");
     /**
      * 生成代理接口的方法 Return 返回类型
      */

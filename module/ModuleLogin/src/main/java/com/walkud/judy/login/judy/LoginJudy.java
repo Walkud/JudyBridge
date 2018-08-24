@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.walkud.judy.annontations.JudyBridge;
+import com.walkud.judy.api.annontations.JudyBridge;
 import com.walkud.judy.lib.bean.User;
 import com.walkud.judy.login.JudyTest;
 import com.walkud.judy.login.LoginActivity;

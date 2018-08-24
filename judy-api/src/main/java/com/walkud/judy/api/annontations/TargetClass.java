@@ -1,4 +1,4 @@
-package com.walkud.judy.annontations;
+package com.walkud.judy.api.annontations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

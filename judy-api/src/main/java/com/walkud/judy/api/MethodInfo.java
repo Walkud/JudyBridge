@@ -1,8 +1,6 @@
 package com.walkud.judy.api;
 
-import android.util.Log;
-
-import com.walkud.judy.annontations.TargetClass;
+import com.walkud.judy.api.annontations.TargetClass;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
