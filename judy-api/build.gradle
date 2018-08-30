@@ -24,11 +24,5 @@ dependencies {
     implementation 'com.android.support:support-annotations:28.0.0-alpha3'
 }
 
-//----------------发布修改属性-----------------
-ext {
-    ver = "0.1.0"// 版本号，下次更新是只需要更改版本号即可
-    libName = "judy-bridge"//发布到JCenter上的项目名字
-    pkgDesc = 'JudyBridge api'//包说明
-}
-
-apply from: "../maven/jcenter.gradle"
+//----------------发布-----------------
+apply from: "./jcenter.gradle"

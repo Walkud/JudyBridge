@@ -7,27 +7,16 @@ version = VERSION
 group = GROUP
 //上面配置后上传至JCenter后的编译路径是这样的： compile 'com.walkud.judy:judy-api:1.0.0'
 
-if (project.getPlugins().hasPlugin('com.android.application') ||
-        project.getPlugins().hasPlugin('com.android.library')) {
+//生成源文件
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
 
-    //生成源文件
-    task sourcesJar(type: Jar) {
-        from android.sourceSets.main.java.srcDirs
-        classifier = 'sources'
-    }
-
-    //生成Javadoc文档
-    task javadoc(type: Javadoc) {
-        source = android.sourceSets.main.java.srcDirs
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    }
-
-} else {
-    //生成源文件
-    task sourcesJar(type: Jar) {
-        from sourceSets.main.java.srcDirs
-        classifier = 'sources'
-    }
+//生成Javadoc文档
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
 //文档打包成jar
@@ -97,11 +86,12 @@ bintray {
         //这里的repo值必须要和你创建Maven仓库的时候的名字一样
         repo = REPO
         //发布到JCenter上的项目名字
-        name = libName
+        name = 'judy-bridge'
         //项目描述
-        desc = pkgDesc
+        desc = 'Android is a simple, low-cost library of modularity'
         websiteUrl = SITE_URL
         vcsUrl = GIT_URL
+        labels = ['judy', 'module', 'bridge']
         licenses = ["MIT"]
         publish = true
     }

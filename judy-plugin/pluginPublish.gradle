@@ -1,0 +1,30 @@
+apply plugin: "com.gradle.plugin-publish" //这个是发布到插件门户网站的插件
+
+version = VERSION    //配置插件的版本号
+group = GROUP   //插件的群组，插件的classpath会用到
+
+pluginBundle {
+
+    website = SITE_URL
+    vcsUrl = GIT_URL
+    description = 'Android is a simple, low-cost modular library plug-in.'  //插件描述
+    tags = ['JudyBridge', 'module']  //插件的tag。可以通过这个在插件门户上搜索
+
+    plugins {
+        greetingsPlugin {
+            id = 'judy.bridge'   //插件的id，到时候apply的插件id
+            displayName = 'JudyBridge plugin'
+        }
+    }
+}
+
+javadoc {
+    options {
+        //如果你的项目里面有中文注释的话，必须将格式设置为UTF-8，不然会出现乱码
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
