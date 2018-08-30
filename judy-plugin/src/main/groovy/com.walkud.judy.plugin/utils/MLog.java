@@ -20,7 +20,7 @@ public class MLog {
     /**
      * 输出Debug日志
      *
-     * @param msg
+     * @param msg 日志信息
      */
     public static void d(String msg) {
         if (debug && logger != null) {
@@ -31,7 +31,7 @@ public class MLog {
     /**
      * 输出信息日志
      *
-     * @param msg
+     * @param msg 日志信息
      */
     public static void i(String msg) {
         if (logger != null) {
@@ -42,7 +42,7 @@ public class MLog {
     /**
      * 输出错误日志
      *
-     * @param msg
+     * @param msg 日志信息
      */
     public static void e(String msg) {
         if (logger != null) {

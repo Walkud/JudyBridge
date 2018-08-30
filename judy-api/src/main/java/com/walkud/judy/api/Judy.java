@@ -30,9 +30,9 @@ public class Judy {
     /**
      * 获取对应的JudyBridge
      *
-     * @param cls
-     * @param <T>
-     * @return
+     * @param cls 目标Class
+     * @param <T> 泛型
+     * @return 返回目标对象
      */
     public static <T> T getBridge(Class<T> cls) {
         return Hold.INSTANCE.createBridge(cls);
@@ -41,9 +41,9 @@ public class Judy {
     /**
      * 创建动态代理
      *
-     * @param cls
-     * @param <T>
-     * @return
+     * @param cls 目标Class
+     * @param <T> 泛型
+     * @return 返回目标对象
      */
     @SuppressWarnings("unchecked")
     private <T> T createBridge(Class<T> cls) {
@@ -61,8 +61,8 @@ public class Judy {
     /**
      * 获取代理的方法
      *
-     * @param method
-     * @return
+     * @param method 被调用的方法
+     * @return 返回代理的方法
      */
     private ServiceMethod<?> getServiceMethod(Method method) {
         ServiceMethod<?> serviceMethod = serviceMethodCache.get(method);

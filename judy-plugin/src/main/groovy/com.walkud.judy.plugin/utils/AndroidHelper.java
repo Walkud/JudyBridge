@@ -18,6 +18,11 @@ import java.util.regex.Pattern;
  */
 public class AndroidHelper {
 
+    /**
+     * 获取不同平台的文件路径分隔符
+     *
+     * @return 返回分隔符
+     */
     public static String getSeparator() {
         return "\\".equals(File.separator) ? "\\\\" : File.separator;
     }
@@ -25,6 +30,9 @@ public class AndroidHelper {
 
     /**
      * 过滤Src下特定目录
+     *
+     * @param file 目录
+     * @return 返回是否为特定目录
      */
     public static boolean filterSrcDir(File file) {
         String reg = "^.*" + getSeparator() + "(androidTest|test|debug)$";
@@ -37,8 +45,8 @@ public class AndroidHelper {
     /**
      * 过滤Src下资源文件目录
      *
-     * @param file
-     * @return
+     * @param file 目录
+     * @return 返回是否为资源目录
      */
     public static boolean filterResDir(File file) {
         String reg = "^.*src" + getSeparator() + "[a-zA-Z0-9]+" + getSeparator() + "res$";
@@ -51,8 +59,8 @@ public class AndroidHelper {
     /**
      * 获取Android 扩展配置
      *
-     * @param project
-     * @return
+     * @param project Project对象
+     * @return 返回android配置
      */
     public static BaseExtension getAndroidExtension(Project project) {
         return (BaseExtension) project.getExtensions().getByName("android");
@@ -61,8 +69,8 @@ public class AndroidHelper {
     /**
      * 是否为Android Library模块
      *
-     * @param project
-     * @return
+     * @param project Project对象
+     * @return 返回是否为Android Library模块
      */
     public static boolean hasLibraryModule(Project project) {
         BaseExtension extension = getAndroidExtension(project);
@@ -72,8 +80,8 @@ public class AndroidHelper {
     /**
      * 遍历指定Android变种
      *
-     * @param project
-     * @param action
+     * @param project Project对象
+     * @param action  处理回调对象
      */
     public static void forEachVariant(Project project, Action<BaseVariant> action) {
         BaseExtension extension = getAndroidExtension(project);
@@ -87,8 +95,8 @@ public class AndroidHelper {
     /**
      * 首字母大写
      *
-     * @param str
-     * @return
+     * @param str 字符串
+     * @return 返回首字母大写的字符串
      */
     public static String captureChar(String str) {
         if (str == null || str.length() == 0) {

@@ -21,8 +21,8 @@ public class TypeUtil {
     /**
      * 根据类型名称转换为对应的TypeName对象
      *
-     * @param typeName
-     * @return
+     * @param typeName 类型名称
+     * @return 返回类型TypeName对象
      */
     public static TypeName convertTypeName(String typeName) {
         if ("void".equals(typeName)) {

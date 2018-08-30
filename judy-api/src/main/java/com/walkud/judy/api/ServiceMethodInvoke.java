@@ -19,8 +19,8 @@ class ServiceMethodInvoke<T> extends ServiceMethod<T> {
     /**
      * 反射调用目标类方法
      *
-     * @param args
-     * @return
+     * @param args 方法参数
+     * @return 返回被调方法的返回类型
      */
     @Override
     @SuppressWarnings("unchecked")

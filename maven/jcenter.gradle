@@ -2,21 +2,32 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 // 版本号，下次更新是只需要更改版本号即可
-version = ext.ver
+version = VERSION
 //发布到组织名称名字，必须填写
-group = ext.group
+group = GROUP
 //上面配置后上传至JCenter后的编译路径是这样的： compile 'com.walkud.judy:judy-api:1.0.0'
 
-//生成源文件
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
+if (project.getPlugins().hasPlugin('com.android.application') ||
+        project.getPlugins().hasPlugin('com.android.library')) {
 
-//生成Javadoc文档
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    //生成源文件
+    task sourcesJar(type: Jar) {
+        from android.sourceSets.main.java.srcDirs
+        classifier = 'sources'
+    }
+
+    //生成Javadoc文档
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+
+} else {
+    //生成源文件
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.java.srcDirs
+        classifier = 'sources'
+    }
 }
 
 //文档打包成jar
@@ -46,7 +57,7 @@ install {
                 packaging 'jar'
                 //项目描述，随意填
                 name 'Android 组件化库'
-                url siteUrl
+                url SITE_URL
                 licenses {
                     license {
                         //开源协议
@@ -63,9 +74,9 @@ install {
                     }
                 }
                 scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
+                    connection GIT_URL
+                    developerConnection GIT_URL
+                    url SITE_URL
                 }
             }
         }
@@ -82,15 +93,15 @@ bintray {
     configurations = ['archives']
     pkg {
         //用户组织
-        userOrg = 'judy'
+        userOrg = USER_ORG
         //这里的repo值必须要和你创建Maven仓库的时候的名字一样
-        repo = "maven"
+        repo = REPO
         //发布到JCenter上的项目名字
         name = libName
         //项目描述
         desc = pkgDesc
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
+        websiteUrl = SITE_URL
+        vcsUrl = GIT_URL
         licenses = ["MIT"]
         publish = true
     }

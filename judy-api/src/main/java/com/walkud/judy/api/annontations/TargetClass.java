@@ -17,7 +17,7 @@ public @interface TargetClass {
     /**
      * 目标Class全路径名(如：com.walkud.judy.annontations.TargetClass)
      *
-     * @return
+     * @return 返回目标Class全路径名字符串
      */
     String value() default "";
 

@@ -14,11 +14,10 @@ repositories {
 
 //----------------发布修改属性-----------------
 ext {
-    ver = "0.0.1"// 版本号，下次更新是只需要更改版本号即可
-    libName = "JudyBridgePlugin"//发布到JCenter上的项目名字
+    ver = "0.1.0"// 版本号，下次更新是只需要更改版本号即可
+    libName = "judy-bridge-plugin"//发布到JCenter上的项目名字
     pkgDesc = "JudyBridge plugin"//包说明
-    group = "com.walkud.judy.plugin"
 }
 
-//apply from: "../maven/jcenter.gradle"
-apply from: "../maven/localMaven.gradle"
+apply from: "../maven/jcenter.gradle"
+//apply from: "../maven/localMaven.gradle"

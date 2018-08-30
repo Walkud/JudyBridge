@@ -6,7 +6,6 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
-import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.walkud.judy.plugin.ConfigExtension;
@@ -38,6 +37,12 @@ public class ModuleParse {
     private TypeSpec typeSpec;
     private HashMap<String, ClassName> importTypeReg = new HashMap<>();
 
+    /**
+     * 解析构造器
+     *
+     * @param cu              源文件解析信息
+     * @param configExtension JudyBridge 配置信息
+     */
     public ModuleParse(CompilationUnit cu, ConfigExtension configExtension) {
         //获取类名
         List types = cu.types();
@@ -85,7 +90,7 @@ public class ModuleParse {
     /**
      * 根据import类型生成对应的参数类型，由于eclipse-astparser无法获取参数类型ClassName,所以使用一下方法生成
      *
-     * @param result
+     * @param result 源文件解析信息
      */
     private void parseImportType(CompilationUnit result) {
         List imports = result.imports();
@@ -108,7 +113,7 @@ public class ModuleParse {
      *
      * @param typeStr   类型名称
      * @param isConvert 是否将基本类型装箱为引用类型
-     * @return
+     * @return 返回类型 TypeName对象
      */
     private TypeName getTypeName(String typeStr, boolean isConvert) {
         //获取导入类型的TypeName
@@ -132,8 +137,8 @@ public class ModuleParse {
     /**
      * 创建方法Spec 返回值、修饰符、方法名称
      *
-     * @param methodDeclaration
-     * @return
+     * @param methodDeclaration 解析的方法信息
+     * @return 返回方法生成的Builder对象
      */
     private MethodSpec.Builder createMethodSpec(MethodDeclaration methodDeclaration) {
 
@@ -157,7 +162,7 @@ public class ModuleParse {
      *
      * @param file        文件
      * @param packageName 包名
-     * @throws IOException
+     * @throws IOException 抛出IO异常
      */
     public void writeTo(File file, String packageName) throws IOException {
         JavaFile javaFile = JavaFile.builder(packageName, typeSpec).build();
