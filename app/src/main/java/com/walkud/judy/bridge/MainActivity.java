@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.walkud.judy.api.Judy;
 import com.walkud.judy.bridge.adapter.MainAdapter;
+import com.walkud.judy.lib.base.BaseActivity;
+import com.walkud.judy.lib.common.JudyHelper;
 import com.walkud.judy.lib.judy.LoginJudyBridge;
 import com.walkud.judy.lib.judy.ModuleAJudyBridge;
 
@@ -17,7 +19,7 @@ import java.util.List;
 /**
  * 主页
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private List<String> list = Arrays.asList("登录", "个人中心");
 
@@ -36,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 switch (position) {
                     case 0://登录
-                        Judy.getBridge(LoginJudyBridge.class).forwrodLogin(MainActivity.this);
+                        JudyHelper.getLoginJudyBridge().forwrodLogin(MainActivity.this);
                         break;
                     case 1://个人中心
-                        Judy.getBridge(ModuleAJudyBridge.class).forwordUserCenter(MainActivity.this);
+                        JudyHelper.getModuleAJudyBridge().forwordUserCenter(MainActivity.this);
                         break;
                 }
             }

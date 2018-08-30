@@ -47,5 +47,12 @@ public class LoginJudy {
         return JudyTest.getUser();
     }
 
+    /**
+     * 注销
+     */
+    public void logout() {
+        JudyTest.setUser(null);
+    }
+
 
 }

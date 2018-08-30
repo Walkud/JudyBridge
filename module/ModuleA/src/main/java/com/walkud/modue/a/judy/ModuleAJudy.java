@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.walkud.judy.api.Judy;
 import com.walkud.judy.api.annontations.JudyBridge;
+import com.walkud.judy.lib.common.JudyHelper;
 import com.walkud.judy.lib.judy.LoginJudyBridge;
 import com.walkud.modue.a.UserCenterActivity;
 
@@ -21,12 +22,12 @@ public class ModuleAJudy {
      * @param activity
      */
     public void forwordUserCenter(Activity activity) {
-        if (Judy.getBridge(LoginJudyBridge.class).isLogin()) {
+        if (JudyHelper.getLoginJudyBridge().isLogin()) {
             //进入个人中心
             activity.startActivity(new Intent(activity, UserCenterActivity.class));
         } else {
             //未登录，进入登录页面
-            Judy.getBridge(LoginJudyBridge.class).forwrodLogin(activity);
+            JudyHelper.getLoginJudyBridge().forwrodLogin(activity);
         }
     }
 }
