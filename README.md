@@ -7,6 +7,8 @@ Android 一个轻量、自由、低学习成本的模块化库。
 
 ## 使用说明
 
+[![Download-DemoApp](https://img.shields.io/badge/Download-DemoApp-green.svg)](./material/app-release.apk) ![judy--api](https://img.shields.io/badge/judy--api-0.1.0-blue.svg) ![judy--api](https://img.shields.io/badge/judy--plugin-0.1.1-blue.svg) [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/mit-license.php)
+
 
 1、在根目录build.gradle构建脚本中添加插件依赖：
 
@@ -14,9 +16,6 @@ Android 一个轻量、自由、低学习成本的模块化库。
 ```
 buildscript {
   repositories {
-  	maven{
-   		url "https://dl.bintray.com/zly/maven"
-    }
     jcenter()
    }
    
@@ -38,6 +37,8 @@ dependencies {
 }
 
 ```
+
+PS：只需要在基础库模块中添加即可。
 
 3、在各业务模块中(AS标准目录结构)创建服务xxx类,在该类上添加@JudyBridge注解，例如：
 
@@ -76,8 +77,10 @@ Judy.getBridge(LoginJudyBridge.class).isLogin();
 
 ```
 
-PS：详细使用示例请参考代码
+PS：详细使用示例请参考代码。
 
+## 混淆
+待完善
 
 ## 原理
 
@@ -89,9 +92,6 @@ PS：详细使用示例请参考代码
 1. 对根路径下的所有模块源码目录（ AndroidStudio 标准目录结构的src下 ）进行递归遍历 java 源文件。
 2. 解析该类是否包含指定注解,如果包含则解析并在指定路径下（ 路径：build/generated/source/judyBridge/ ）生成中间层抽象类源文件，否则跳过该文件。
 
-
-## 混淆
-待完善
 
 ## License
 
