@@ -13,6 +13,10 @@ repositories {
 }
 
 //----------------发布-----------------
+
+ext {
+    VERSION = "0.1.2"//发布版本
+}
+
 apply from: "./localMaven.gradle"
 apply from: "./jcenter.gradle"
-//apply from: "./pluginPublish.gradle"

@@ -2,6 +2,11 @@
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
+// 版本号，下次更新是只需要更改版本号即可
+version = ext.VERSION
+//发布到组织名称名字，必须填写
+group = GROUP
+//上面配置后上传至JCenter后的编译路径是这样的： compile 'com.walkud.judy:judy-api:1.0.0'
 
 task sourcesJar(type: Jar, dependsOn:classes) {
     classifier = 'sources'
@@ -64,7 +69,6 @@ bintray {
     user = properties.getProperty("bintray.user")    //读取 local.properties 文件里面的 bintray.user
     key = properties.getProperty("bintray.apikey")   //读取 local.properties 文件里面的 bintray.apikey
     configurations = ['archives']
-    override = true
     pkg {
         //用户组织
         userOrg = USER_ORG
