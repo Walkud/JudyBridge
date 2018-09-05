@@ -24,8 +24,8 @@ public class ModuleAJudy {
             //进入个人中心
             activity.startActivity(new Intent(activity, UserCenterActivity.class));
         } else {
-            //未登录，进入登录页面
-            JudyHelper.getLoginJudyBridge().forwrodLogin(activity);
+            //未登录，先进入登录页面
+            JudyHelper.getLoginJudyBridge().forwrodLogin(activity, UserCenterActivity.class.getName());
         }
     }
 }

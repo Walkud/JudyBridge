@@ -1,12 +1,12 @@
 package com.walkud.judy.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.walkud.judy.lib.base.BaseActivity;
 import com.walkud.judy.lib.bean.User;
@@ -16,6 +16,8 @@ import com.walkud.judy.lib.bean.User;
  * Created by Zhuliya on 2018/8/22
  */
 public class LoginActivity extends BaseActivity {
+
+    public static final String EXTRA_LOGIN_TARGET_CLASS = "EXTRA_LOGIN_TARGET_CLASS";
 
     private EditText userNameEt;
     private EditText passwordEt;
@@ -62,6 +64,16 @@ public class LoginActivity extends BaseActivity {
         JudyTest.setUser(user);
 
         showToast("登录成功：" + userName + "," + password);
+
+        Intent intent = getIntent();
+        String targetClass = intent.getStringExtra(EXTRA_LOGIN_TARGET_CLASS);
+        if (!TextUtils.isEmpty(targetClass)) {
+            //登录成功目标跳转页
+            Intent it = new Intent(intent);
+            it.setClassName(this, targetClass);
+            startActivity(it);
+        }
+
         finish();
     }
 }
