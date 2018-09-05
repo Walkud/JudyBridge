@@ -37,12 +37,12 @@ class JudyBridgePlugin implements Plugin<Project> {
         outBuildDir = "${project.buildDir}${File.separator}generated${File.separator}source${File.separator}judyBridge"
         configExtension = project.extensions.create("judyConfig", ConfigExtension)
 
-        //设置日志输出
-        MLog.setLogger(project.getLogger(), configExtension.logDebug)
-
-        MLog.d("Judy生成源码路径：${outBuildDir}")
-
         project.afterEvaluate {
+
+            //设置日志输出
+            MLog.setLogger(project.getLogger(), configExtension.logDebug)
+
+            MLog.d("Judy生成源码路径：${outBuildDir}")
 
             //创建一个独立执行的任务组(judy)
             Task task = project.task("generatorJudyBridge")

@@ -17,6 +17,11 @@ class ConfigExtension {
     String proxyFileSuffix = "Bridge"
 
     /**
+     * 生成代理接口文件的包路径(例如 com.walkud.judy)
+     */
+    String packageName = ""
+
+    /**
      * 是否输出debug日志信息，默认：false,不输出
      */
     boolean logDebug

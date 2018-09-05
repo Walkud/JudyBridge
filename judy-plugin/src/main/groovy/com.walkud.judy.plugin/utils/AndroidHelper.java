@@ -106,6 +106,19 @@ public class AndroidHelper {
         char[] cs = str.toCharArray();
         cs[0] -= 32;
         return String.valueOf(cs);
+    }
 
+    /**
+     * 字符串是否为空
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isEmpty(String str) {
+        if (str == null || str.trim().length() == 0) {
+            return true;
+        }
+
+        return false;
     }
 }

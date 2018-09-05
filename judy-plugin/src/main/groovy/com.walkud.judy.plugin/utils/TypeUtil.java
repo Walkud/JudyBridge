@@ -1,7 +1,6 @@
 package com.walkud.judy.plugin.utils;
 
 import com.squareup.javapoet.ClassName;
-import com.squareup.javapoet.TypeName;
 
 /**
  * 类型 ClassName 工具类
@@ -13,38 +12,63 @@ public class TypeUtil {
      * 生成代理接口的被抽象类的目标注解类型
      */
     public static final ClassName TARGET_CLASS = ClassName.get("com.walkud.judy.api.annontations", "TargetClass");
-    /**
-     * 生成代理接口的方法 Return 返回类型
-     */
-    public static final ClassName JUDY_RESULT_CLASS = ClassName.get("com.walkud.judy.api", "JudyResult");
 
     /**
-     * 根据类型名称转换为对应的TypeName对象
+     * 判断是否为有效Type
      *
-     * @param typeName 类型名称
-     * @return 返回类型TypeName对象
+     * @param typeSet 有效类型
+     * @param name    导入类型
+     * @return
      */
-    public static TypeName convertTypeName(String typeName) {
-        if ("void".equals(typeName)) {
-            return TypeName.VOID.box();
-        } else if ("boolean".equals(typeName)) {
-            return TypeName.BOOLEAN.box();
-        } else if ("byte".equals(typeName)) {
-            return TypeName.BYTE.box();
-        } else if ("short".equals(typeName)) {
-            return TypeName.SHORT.box();
-        } else if ("int".equals(typeName)) {
-            return TypeName.INT.box();
-        } else if ("long".equals(typeName)) {
-            return TypeName.LONG.box();
-        } else if ("char".equals(typeName)) {
-            return TypeName.CHAR.box();
-        } else if ("float".equals(typeName)) {
-            return TypeName.FLOAT.box();
-        } else if ("double".equals(typeName)) {
-            return TypeName.DOUBLE.box();
+    public static boolean isValidType(String typeSet, String name) {
+        int index = typeSet.indexOf("<");
+        if (index > -1) {
+            //包含泛型，递归处理泛型
+            String type = typeSet.substring(0, index);
+            if (isVaild(type, name)) {
+                //如果类型匹配，则直接返回，无需再处理后续泛型
+                return true;
+            } else {
+
+                type = typeSet.substring(index + 1, typeSet.length() - 1);
+
+                if (!type.contains("<") && type.contains("?")) {
+                    //去掉通配符
+                    type = releaseWildcard(type);
+                }
+
+                //递归
+                return isValidType(type, name);
+            }
         }
-        return ClassName.get("", typeName);
+
+        return isVaild(typeSet, name);
+    }
+
+    /**
+     * 验证类型是否匹配
+     * <p>
+     * 判断：有效类型包含 . 则全匹配 否则后缀匹配
+     *
+     * @param typeSet 有效类型
+     * @param name    导入类型
+     * @return
+     */
+    private static boolean isVaild(String typeSet, String name) {
+        return (typeSet.contains(".") && name.equals(typeSet)) || name.endsWith("." + typeSet);
+    }
+
+    /**
+     * 去掉通配符
+     *
+     * @param type
+     * @return
+     */
+    private static String releaseWildcard(String type) {
+        return type.replaceAll("\\?", "")
+                .replaceAll(" extends ", "")
+                .replaceAll(" super ", "")
+                .trim();
     }
 
 }

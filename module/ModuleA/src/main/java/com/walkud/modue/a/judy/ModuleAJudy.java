@@ -3,10 +3,8 @@ package com.walkud.modue.a.judy;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.walkud.judy.api.Judy;
 import com.walkud.judy.api.annontations.JudyBridge;
 import com.walkud.judy.lib.common.JudyHelper;
-import com.walkud.judy.lib.judy.LoginJudyBridge;
 import com.walkud.modue.a.UserCenterActivity;
 
 /**

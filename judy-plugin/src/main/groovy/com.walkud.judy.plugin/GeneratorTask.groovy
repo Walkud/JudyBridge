@@ -1,9 +1,9 @@
 package com.walkud.judy.plugin
 
-import com.walkud.judy.plugin.model.ModuleParse
-import com.walkud.judy.plugin.utils.MLog
+import com.walkud.judy.plugin.parse.JudyJavaParser
+import com.walkud.judy.plugin.parse.JudyParse
 import com.walkud.judy.plugin.utils.AndroidHelper
-import org.eclipse.jdt.core.dom.*
+import com.walkud.judy.plugin.utils.MLog
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.tasks.TaskAction
@@ -44,6 +44,8 @@ class GeneratorTask extends DefaultTask {
         //创建输出目录,如果存在则删除重新创建
         outDir = outputs.files.singleFile
 
+        configExtension.setPackageName(packageId)
+
         MLog.d("输出路径:${outDir.getAbsolutePath()}")
 
         outDir.deleteDir()
@@ -72,34 +74,19 @@ class GeneratorTask extends DefaultTask {
             if (it.isDirectory()) {
                 eachInputFile(it)
             } else if (it.file && isVaildFile(it)) {
-                //AST分析
-                def parser = ASTParser.newParser(AST.JLS8) as ASTParser //initialize
-                parser.setKind(ASTParser.K_COMPILATION_UNIT)     //to parse compilation unit
-                parser.setSource(it.text.toCharArray())
-                //content is a string which stores the java source
-                parser.setResolveBindings(true)
-                CompilationUnit result = (CompilationUnit) parser.createAST(null)
-                //获取类名
-                List types = result.types()
 
-                if (types.isEmpty()) {
-                    return
-                }
+                try {
+                    JudyParse parser = new JudyJavaParser(it, configExtension)
 
-                //获取注解信息
-                TypeDeclaration typeDec = (TypeDeclaration) types.get(0)
-                List modifiers = typeDec.modifiers()
-
-                modifiers.each { modifier ->
-                    if (modifier instanceof MarkerAnnotation) {
-                        //判断指定注解
-                        MarkerAnnotation annotation = (MarkerAnnotation) modifier
-                        if ("JudyBridge" == annotation.typeName.toString()) {
-                            ModuleParse moduleParse = new ModuleParse(result, configExtension)
-                            moduleParse.writeTo(outDir, packageId)
-                        }
+                    if (parser.checkValid("JudyBridge")) {
+                        parser.parse()
+                        parser.writeTo(outDir)
                     }
+                } catch (IOException e) {
+                    MLog.d("解析、生成文件失败！ 文件：${it.absolutePath}")
+                    throw e
                 }
+
             }
         }
 
