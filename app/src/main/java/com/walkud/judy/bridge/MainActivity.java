@@ -1,17 +1,13 @@
 package com.walkud.judy.bridge;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.walkud.judy.api.Judy;
 import com.walkud.judy.bridge.adapter.MainAdapter;
 import com.walkud.judy.lib.base.BaseActivity;
 import com.walkud.judy.lib.common.JudyHelper;
-import com.walkud.judy.lib.judy.LoginJudyBridge;
-import com.walkud.judy.lib.judy.ModuleAJudyBridge;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +34,11 @@ public class MainActivity extends BaseActivity {
             public void onClick(View view, int position) {
                 switch (position) {
                     case 0://登录
-                        JudyHelper.getLoginJudyBridge().forwrodLogin(MainActivity.this);
+                        if (JudyHelper.getLoginJudyBridge().isLogin()) {
+                            showToast("已登录");
+                        } else {
+                            JudyHelper.getLoginJudyBridge().forwrodLogin(MainActivity.this);
+                        }
                         break;
                     case 1://个人中心
                         JudyHelper.getModuleAJudyBridge().forwordUserCenter(MainActivity.this);
