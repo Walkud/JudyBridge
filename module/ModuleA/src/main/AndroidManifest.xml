@@ -3,7 +3,8 @@
 
     <application>
 
-        <activity android:name=".UserCenterActivity" />
+        <activity android:name=".UserCenterActivity"
+            android:label="个人中心"/>
 
     </application>
 </manifest>

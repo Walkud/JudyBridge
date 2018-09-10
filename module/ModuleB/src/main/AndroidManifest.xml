@@ -2,6 +2,7 @@
     package="com.zly.module.b">
 
     <application>
-        <activity android:name=".FragmentDemoActivity" />
+        <activity android:name=".FragmentDemoActivity"
+            android:label="显示模块A Fragment"/>
     </application>
 </manifest>
