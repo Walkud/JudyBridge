@@ -22,7 +22,7 @@ buildscript {
    }
    
   dependencies {
-  	classpath 'com.walkud.judy:judy-plugin:0.2.0'
+  	classpath 'com.zly.judy:judy-plugin:0.2.0'
   }
 }
 
@@ -35,7 +35,7 @@ buildscript {
 apply plugin: 'judy.bridge'
 
 dependencies {
-	api 'com.walkud.judy:judy-api:0.1.0'
+	api 'com.zly.judy:judy-api:0.1.0'
 }
 
 ```

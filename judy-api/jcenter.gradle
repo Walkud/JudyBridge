@@ -5,7 +5,7 @@ apply plugin: 'com.jfrog.bintray'
 version = ext.VERSION
 //发布到组织名称名字，必须填写
 group = GROUP
-//上面配置后上传至JCenter后的编译路径是这样的： compile 'com.walkud.judy:judy-api:1.0.0'
+//上面配置后上传至JCenter后的编译路径是这样的： compile 'com.zly.judy:judy-api:1.0.0'
 
 //生成源文件
 task sourcesJar(type: Jar) {
@@ -57,9 +57,9 @@ install {
                 developers {
                     developer {
                         //开发者的个人信息
-                        id 'Walkud'
-                        name 'Walkud'
-                        email 'walkudlove@gmail.com'
+                        id 'Zhuliya'
+                        name 'Zhuliya'
+                        email 'walkudjudy@gmail.com'
                     }
                 }
                 scm {

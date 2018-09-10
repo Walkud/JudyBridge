@@ -6,7 +6,7 @@ apply plugin: 'maven-publish'
 version = ext.VERSION
 //发布到组织名称名字，必须填写
 group = GROUP
-//上面配置后上传至JCenter后的编译路径是这样的： compile 'com.walkud.judy:judy-api:1.0.0'
+//上面配置后上传至JCenter后的编译路径是这样的： compile 'com.zly.judy:judy-api:1.0.0'
 
 task sourcesJar(type: Jar, dependsOn:classes) {
     classifier = 'sources'
@@ -45,8 +45,8 @@ install {
                 developers {
                     developer {
                         //开发者的个人信息
-                        name 'Walkud'
-                        email 'walkudlove@gmail.com'
+                        name 'Zhuliya'
+                        email 'walkudjudy@gmail.com'
                     }
                 }
                 scm {
