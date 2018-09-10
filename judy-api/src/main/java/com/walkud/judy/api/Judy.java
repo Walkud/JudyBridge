@@ -1,7 +1,5 @@
 package com.walkud.judy.api;
 
-import android.support.annotation.Nullable;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -50,7 +48,7 @@ public class Judy {
         return (T) Proxy.newProxyInstance(cls.getClassLoader(), new Class<?>[]{cls},
                 new InvocationHandler() {
                     @Override
-                    public Object invoke(Object proxy, Method method, @Nullable Object[] args) {
+                    public Object invoke(Object proxy, Method method, Object[] args) {
                         ServiceMethod<?> serviceMethod = getServiceMethod(method);
                         return serviceMethod.invoke(args);
                     }

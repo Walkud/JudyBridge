@@ -43,7 +43,7 @@ install {
         // This generates POM.xml with proper parameters
         pom {
             project {
-                packaging 'jar'
+                packaging 'aar'
                 //项目描述，随意填
                 name 'Android 组件化库'
                 url SITE_URL
@@ -80,6 +80,8 @@ bintray {
     user = properties.getProperty("bintray.user")    //读取 local.properties 文件里面的 bintray.user
     key = properties.getProperty("bintray.apikey")   //读取 local.properties 文件里面的 bintray.apikey
     configurations = ['archives']
+    publish = true
+    override = true
     pkg {
         //用户组织
         userOrg = USER_ORG
@@ -93,7 +95,6 @@ bintray {
         vcsUrl = GIT_URL
         labels = ['judy', 'module', 'bridge']
         licenses = ["MIT"]
-        publish = true
     }
 }
 

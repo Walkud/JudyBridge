@@ -1,17 +1,13 @@
 package com.walkud.modue.a;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.walkud.judy.api.Judy;
 import com.walkud.judy.lib.base.BaseActivity;
 import com.walkud.judy.lib.bean.User;
 import com.walkud.judy.lib.common.JudyHelper;
-import com.walkud.judy.lib.judy.LoginJudyBridge;
 
 /**
  * 个人中心
@@ -24,7 +20,7 @@ public class UserCenterActivity extends BaseActivity {
     private Button button;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_center);
 

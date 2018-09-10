@@ -4,10 +4,12 @@
 
 Android 一个轻量、自由、低学习成本的模块化库。
 
+该项目根据各业务模块自定义的服务类自动生成中间层接口，使各个业务模块之间解耦。
+
 
 ## 使用说明
 
-[![Download-DemoApp](https://img.shields.io/badge/Download-DemoApp-green.svg)](./material/app-release.apk) ![judy--api](https://img.shields.io/badge/judy--api-0.1.0-blue.svg) ![judy--api](https://img.shields.io/badge/judy--plugin-0.1.1-blue.svg) [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/mit-license.php)
+[![Download-DemoApp](https://img.shields.io/badge/Download-DemoApp-green.svg)](./material/app-release.apk) ![judy-api](https://img.shields.io/badge/judy--api-0.1.0-blue.svg) ![judy-plugin](https://img.shields.io/badge/judy--plugin-0.2.0-blue.svg) [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/mit-license.php)
 
 
 1、在根目录build.gradle构建脚本中添加插件依赖：
@@ -20,7 +22,7 @@ buildscript {
    }
    
   dependencies {
-  	classpath classpath 'com.walkud.judy:judy-plugin:0.1.1'
+  	classpath 'com.walkud.judy:judy-plugin:0.2.0'
   }
 }
 
@@ -84,13 +86,31 @@ PS：详细使用示例请参考代码。
 
 ## 原理
 
-模块化开发通常情况都会有一个基础库，相关模块都会依赖基础库。正是利用这种特性，通过自定义 Gradle Plugin 实现apt功能，生成各业务模块服务的中间层抽象类（ 接口 ）至基础库下（ 路径：build/generated/source/judyBridge/ ），
+模块化开发通常情况都会有一个基础库，各业务模块都会依赖基础库。正是利用这种特性，通过自定义 Gradle Plugin 实现apt功能，生成各业务模块服务的中间层抽象类（ 接口 ）至基础库下（ 路径：build/generated/source/judyBridge/ ），
 业务模块通过动态代理、反射调用对应的具体实现，达到跨模块通信的功能。原理和实现代码都非常简单，源码加上注解也只有10+个类，学习相对简单。
 
 
 自定义Gradle Plugin apt功能简述：
 1. 对根路径下的所有模块源码目录（ AndroidStudio 标准目录结构的src下 ）进行递归遍历 java 源文件。
 2. 解析该类是否包含指定注解,如果包含则解析并在指定路径下（ 路径：build/generated/source/judyBridge/ ）生成中间层抽象类源文件，否则跳过该文件。
+
+###相关目录结构说明
+
+```
+app						//主项目(壳工程)
+BaseLib					//基础库
+module					//各业务模块目录
+  --- MoudleA			//A业务模块
+  --- ModuleLogin		//登录业务模块
+judy-api				//依赖库(功能：根据中间层接口执行动态代理、反射调用对应的具体实现)
+judy-plugin				//依赖Gralde插件(功能：解析源文件生层中间层)
+
+
+```
+
+##其它
+
+[版本更新](./material/md/版本更新.md)
 
 
 ## License

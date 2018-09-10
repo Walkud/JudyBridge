@@ -1,7 +1,5 @@
 package com.walkud.judy.api;
 
-import android.support.annotation.Nullable;
-
 import java.lang.reflect.Method;
 
 /**
@@ -24,7 +22,7 @@ class ServiceMethodInvoke<T> extends ServiceMethod<T> {
      */
     @Override
     @SuppressWarnings("unchecked")
-    T invoke(@Nullable Object[] args) {
+    T invoke(Object[] args) {
         Class<?> cls = methodInfo.getCls();
         try {
             Method method = methodInfo.getMethod();

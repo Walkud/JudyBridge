@@ -1,7 +1,5 @@
 package com.walkud.judy.api;
 
-import android.support.annotation.Nullable;
-
 import java.lang.reflect.Method;
 
 /**
@@ -28,6 +26,6 @@ public abstract class ServiceMethod<T> {
      * @param args 调用参数
      * @return 返回被调方法的返回类型
      */
-    abstract T invoke(@Nullable Object[] args);
+    abstract T invoke(Object[] args);
 
 }
