@@ -2,9 +2,11 @@ package com.zly.modue.a.judy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.judy.lib.common.JudyHelper;
+import com.zly.modue.a.ModuleAFragment;
 import com.zly.modue.a.UserCenterActivity;
 
 /**
@@ -27,5 +29,14 @@ public class ModuleAJudy {
             //未登录，先进入登录页面
             JudyHelper.getLoginJudyBridge().forwrodLogin(activity, UserCenterActivity.class.getName());
         }
+    }
+
+    /**
+     * 获取模块A Fragment
+     *
+     * @return
+     */
+    public Fragment getModuleAFragment() {
+        return new ModuleAFragment();
     }
 }
