@@ -27,8 +27,6 @@ buildscript {
   	classpath 'com.zly.judy:judy-plugin:0.1.0'
   }
 }
-
-
 ```
 
 2、在基础库模块中buidle.gradle构建脚本中添加依赖：
@@ -39,7 +37,6 @@ apply plugin: 'judy.bridge'
 dependencies {
 	api 'com.zly.judy:judy-api:0.1.0'
 }
-
 ```
 
 PS：只需要在基础库模块中添加即可。
@@ -51,11 +48,12 @@ PS：只需要在基础库模块中添加即可。
 public class LoginJudy{
 
 	public boolean isLogin() {……}
-	
+
 	……
 }
-
 ```
+
+PS：服务类就是供其他业务模块调用的具体实现
 
 4、在Terminal执行如下命令(生成中间层抽象类，每次对服务类有任何改动，重新执行命令即可，无需重新build项目)：
 
@@ -65,8 +63,6 @@ public class LoginJudy{
 
 //windows
 gradlew generatorJudyBridge
-
-
 ```
 
 PS：也可以在AndroidStudio 右侧边栏gradle(Gradle projects) ---> [基础库名称] ---> Tasks ---> judy ---> 双击generatorJudyBridge
@@ -75,10 +71,7 @@ PS：也可以在AndroidStudio 右侧边栏gradle(Gradle projects) ---> [基础�
 5、调用：
 
 ```
-
 Judy.getBridge(LoginJudyBridge.class).isLogin();
-
-
 ```
 
 PS：详细使用示例请参考代码。
@@ -106,8 +99,6 @@ module					//各业务模块目录
   --- ModuleLogin		//登录业务模块
 judy-api				//依赖库(功能：根据中间层接口执行动态代理、反射调用对应的具体实现)
 judy-plugin				//依赖Gralde插件(功能：解析源文件生层中间层)
-
-
 ```
 
 ## 其它
