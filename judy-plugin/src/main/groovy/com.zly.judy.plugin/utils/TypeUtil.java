@@ -9,9 +9,14 @@ import com.squareup.javapoet.ClassName;
 public class TypeUtil {
 
     /**
-     * 生成代理接口的被抽象类的目标注解类型
+     * 生成代理接口的被抽象类的目标注解类型，详见judy-api
      */
     public static final ClassName TARGET_CLASS = ClassName.get("com.zly.judy.api.annontations", "TargetClass");
+
+    /**
+     * 保持源码接口类型,详见judy-api
+     */
+    public static final ClassName KEEP_SOURCE = ClassName.get("com.zly.judy.api", "KeepSource");
 
     /**
      * 判断是否为有效Type

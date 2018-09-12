@@ -27,7 +27,8 @@ public class MethodInfo {
 
         if (cls == null) {
             //目标方法不存在TargetClass注解，检查模块间依赖关系，是否正确依赖
-            throw new IllegalArgumentException("Not found tragetClass , please check module dependencies");
+            throw new IllegalArgumentException(method.getDeclaringClass() + " not found tragetClass , please check module dependencies . " +
+                    "If you turn on confusion, you need to implement KeepSource");
         }
 
         try {
@@ -40,10 +41,8 @@ public class MethodInfo {
 
         if (this.method == null) {
             //目标方法不存在，查看生成的Java文件
-            throw new IllegalArgumentException("Not found tragetMethod");
+            throw new IllegalArgumentException("Not found tragetMethod . If you turn on confusion check that the obfuscation configuration is correct");
         }
-
-
     }
 
     public Class<?> getCls() {

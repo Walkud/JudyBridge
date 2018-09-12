@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.judy.lib.bean.User;
 import com.zly.judy.login.JudyTest;
@@ -15,7 +16,7 @@ import com.zly.judy.login.LoginActivity;
  * Created by Zhuliya on 2018/8/23
  */
 @JudyBridge
-public class LoginJudy {
+public class LoginJudy implements KeepSource{
 
     /**
      * 进入登录页面

@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# JudyBridge 混淆配置
+-keep class com.zly.judy.api.** {*;}
+-keep public class * extends com.zly.judy.api.KeepSource {*;}
+-keep public class * implements com.zly.judy.api.KeepSource {*;}

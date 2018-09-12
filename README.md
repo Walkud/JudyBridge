@@ -81,7 +81,14 @@ Judy.getBridge(LoginJudyBridge.class).isLogin();
 PS：详细使用示例请参考代码。
 
 ## 混淆
-待完善
+开启混淆配置后，所有服务类需要实现KeepSource接口，并在proguard-rules.pro中添加如下配置。
+
+```
+# JudyBridge 混淆配置
+-keep class com.zly.judy.api.** {*;}
+-keep public class * extends com.zly.judy.api.KeepSource {*;}
+-keep public class * implements com.zly.judy.api.KeepSource {*;}
+```
 
 ## 原理
 

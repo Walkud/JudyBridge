@@ -38,7 +38,9 @@ public class JudyJavaParser extends JudyParse {
 
     public JudyJavaParser(File file, ConfigExtension configExtension) throws IOException {
         super(file, configExtension);
+        //添加有效类型集合
         typeSets.add(TypeUtil.TARGET_CLASS.reflectionName());
+        typeSets.add(TypeUtil.KEEP_SOURCE.reflectionName());
     }
 
     @Override
@@ -50,10 +52,8 @@ public class JudyJavaParser extends JudyParse {
         //处理Body声明
         parseBodyDeclaration();
 
-        //将类设置为接口
-        ((ClassOrInterfaceDeclaration) typeDeclaration).setInterface(true);
-        //修改类名称
-        typeDeclaration.setName(typeDeclaration.getNameAsString() + configExtension.getProxyFileSuffix());
+        //处理类型声明
+        parseTypeDeclaration();
 
         //处理包声明
         parsePackageDeclaration();
@@ -114,6 +114,23 @@ public class JudyJavaParser extends JudyParse {
                 iterator.remove();
             }
         }
+    }
+
+    /**
+     * 处理类型声明
+     */
+    private void parseTypeDeclaration() {
+        ClassOrInterfaceDeclaration coid = ((ClassOrInterfaceDeclaration) typeDeclaration);
+
+        //将所有接口实现改为继承
+        coid.getExtendedTypes().addAll(coid.getImplementedTypes());
+        //清空所有接口实现
+        coid.getImplementedTypes().clear();
+
+        //将类设置为接口
+        coid.setInterface(true);
+        //修改类名称
+        typeDeclaration.setName(typeDeclaration.getNameAsString() + configExtension.getProxyFileSuffix());
     }
 
     /**

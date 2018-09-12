@@ -1,5 +1,6 @@
 package com.zly.modue.a.judy;
 
+import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.judy.api.annontations.TargetClass;
 import com.zly.judy.lib.bean.Cup;
@@ -17,7 +18,7 @@ import io.reactivex.Observable;
  */
 @JudyBridge
 @TargetClass("acbss")//(RE)
-public class SimpleJudy {
+public class SimpleJudy implements KeepSource{
 
     /**
      * 常量(RE)
