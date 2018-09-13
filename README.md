@@ -43,7 +43,7 @@ dependencies {
 }
 ```
 
-PS：只需要在基础库模块中添加即可。
+**PS：只需要在基础库模块中添加即可。**
 
 3、在各业务模块中(AS标准目录结构)创建服务xxx类,在该类上添加@JudyBridge注解，例如：
 
@@ -57,7 +57,7 @@ public class LoginJudy{
 }
 ```
 
-PS：服务类就是供其他业务模块调用的具体实现
+**PS：服务类就是供其他业务模块调用的具体实现**
 
 4、在Terminal执行如下命令(生成中间层抽象类，每次对服务类有任何改动，重新执行命令即可，无需重新build项目)：
 
@@ -69,7 +69,7 @@ PS：服务类就是供其他业务模块调用的具体实现
 gradlew generatorJudyBridge
 ```
 
-PS：也可以在AndroidStudio 右侧边栏gradle(Gradle projects) ---> [基础库名称] ---> Tasks ---> judy ---> 双击generatorJudyBridge
+**PS：也可以在AndroidStudio 右侧边栏gradle(Gradle projects) ---> [基础库名称] ---> Tasks ---> judy ---> 双击generatorJudyBridge**
 
 
 5、调用：
@@ -78,7 +78,29 @@ PS：也可以在AndroidStudio 右侧边栏gradle(Gradle projects) ---> [基础�
 Judy.getBridge(LoginJudyBridge.class).isLogin();
 ```
 
-PS：详细使用示例请参考代码。
+**PS：详细使用示例请参考代码。**
+
+## judy.bridge插件配置属性说明
+
+在配置apply plugin: 'judy.bridge'构建脚本中添加如下配置：
+
+```
+//参考ConfigExtension
+judyConfig {
+    parseFileSuffix "Judy"//模块文件的后缀名规则，用于遍历文件时判断并快速过滤不需要解析文件，可以提升构建速度
+    proxyFileSuffix "Bridge"//生成中间层接口文件的后缀名,默认值："Bridge"，生成后的抽象接口文件名为："XXXBridge"
+    logDebug true//是否输出debug日志信息，默认：false,不输出
+}
+```
+
+###属性说明
+属性名|说明|默认值
+-----|---|----
+parseFileSuffix|模块文件的后缀名规则，用于遍历文件时判断并快速过滤不需要解析文件，可以提升构建速度|null
+proxyFileSuffix|生成中间层接口文件的后缀名,生成后的中间层接口文件名为："XXXBridge"|Bridge
+logDebug|是否输出debug日志信息|false
+
+**PS：属性配置参数均为可选，根据需求自行选择。**
 
 ## 混淆
 开启混淆配置后，所有服务类需要实现KeepSource接口，并在proguard-rules.pro中添加如下配置。

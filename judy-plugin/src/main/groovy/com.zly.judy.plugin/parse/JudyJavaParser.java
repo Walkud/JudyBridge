@@ -216,7 +216,7 @@ public class JudyJavaParser extends JudyParse {
         String packagePath = configExtension.getPackageName().replace("\\.", File.separator);//包路径
         String fileName = typeDeclaration.getNameAsString() + ".java";//文件名称
         Path path = Paths.get(file.getAbsolutePath(), packagePath, fileName);
-        //生成代理接口
+        //生成中间层接口
         compilationUnit.setStorage(path);
         compilationUnit.getStorage().get().save();
     }

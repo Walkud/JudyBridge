@@ -12,12 +12,12 @@ class ConfigExtension {
     String parseFileSuffix = null
 
     /**
-     * 生成代理接口文件的后缀名,默认值："Bridge"，生成后的代理接口文件名为："XXXBridge"
+     * 生成中间层接口文件的后缀名,默认值："Bridge"，生成后的中间层接口文件名为："XXXBridge"
      */
     String proxyFileSuffix = "Bridge"
 
     /**
-     * 生成代理接口文件的包路径(例如 com.zly.judy)
+     * 生成中间层接口文件的包路径(例如 com.zly.judy)，目前配置后无效，代码中会覆盖
      */
     String packageName = ""
 
