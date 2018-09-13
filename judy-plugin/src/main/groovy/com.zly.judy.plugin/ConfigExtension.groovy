@@ -12,7 +12,7 @@ class ConfigExtension {
     String parseFileSuffix = null
 
     /**
-     * 生成中间层接口文件的后缀名,默认值："Bridge"，生成后的中间层接口文件名为："XXXBridge"
+     * 生成中间层接口文件的后缀名,默认值："Bridge"，生成后的中间层接口文件名为："XXXBridge.java"
      */
     String proxyFileSuffix = "Bridge"
 

@@ -88,7 +88,7 @@ Judy.getBridge(LoginJudyBridge.class).isLogin();
 //参考ConfigExtension
 judyConfig {
     parseFileSuffix "Judy"//模块文件的后缀名规则，用于遍历文件时判断并快速过滤不需要解析文件，可以提升构建速度
-    proxyFileSuffix "Bridge"//生成中间层接口文件的后缀名,默认值："Bridge"，生成后的抽象接口文件名为："XXXBridge"
+    proxyFileSuffix "Bridge"//生成中间层接口文件的后缀名,默认值："Bridge"，生成后的中间层接口文件名为："XXXBridge.java"
     logDebug true//是否输出debug日志信息，默认：false,不输出
 }
 ```
