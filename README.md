@@ -15,7 +15,7 @@ Android 一个轻量、自由、低学习成本的模块化库。该项目根据
 
 ## 使用说明
 
-[![Download-DemoApp](https://img.shields.io/badge/Download-DemoApp-green.svg)](./material/app-release.apk) ![judy-api](https://img.shields.io/badge/judy--api-0.1.0-blue.svg) ![judy-plugin](https://img.shields.io/badge/judy--plugin-0.1.0-blue.svg) [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/mit-license.php)
+[![Download-DemoApp](https://img.shields.io/badge/Download-DemoApp-green.svg)](./material/app-release.apk) ![judy-api](https://img.shields.io/badge/judy--api-0.2.0-blue.svg) ![judy-plugin](https://img.shields.io/badge/judy--plugin-0.2.0-blue.svg) [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/mit-license.php)
 
 
 1、在根目录build.gradle构建脚本中添加插件依赖：
@@ -28,7 +28,7 @@ buildscript {
    }
    
   dependencies {
-  	classpath 'com.zly.judy:judy-plugin:0.1.0'
+  	classpath 'com.zly.judy:judy-plugin:0.2.0'
   }
 }
 ```
@@ -39,7 +39,7 @@ buildscript {
 apply plugin: 'judy.bridge'
 
 dependencies {
-	api 'com.zly.judy:judy-api:0.1.0'
+	api 'com.zly.judy:judy-api:0.2.0'
 }
 ```
 
