@@ -122,6 +122,8 @@ public class JudyJavaParser extends JudyParse {
     private void parseTypeDeclaration() {
         ClassOrInterfaceDeclaration coid = ((ClassOrInterfaceDeclaration) typeDeclaration);
 
+        //清空所有继承
+        coid.getExtendedTypes().clear();
         //将所有接口实现改为继承
         coid.getExtendedTypes().addAll(coid.getImplementedTypes());
         //清空所有接口实现

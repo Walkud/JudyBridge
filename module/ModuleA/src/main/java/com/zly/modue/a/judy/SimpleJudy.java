@@ -5,6 +5,7 @@ import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.judy.api.annontations.TargetClass;
 import com.zly.judy.lib.bean.Cup;
 import com.zly.judy.lib.bean.GlassCup;
+import com.zly.judy.lib.bean.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import io.reactivex.Observable;
  */
 @JudyBridge
 @TargetClass("acbss")//(RE)
-public class SimpleJudy implements KeepSource {
+public class SimpleJudy extends User implements KeepSource {//继承User(RE)
 
     /**
      * 常量(RE)
