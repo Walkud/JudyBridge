@@ -43,7 +43,7 @@ dependencies {
 }
 ```
 
-**PS：只需要在基础库模块中添加即可。**
+###### *PS：只需要在基础库模块中添加即可。*
 
 3、在各业务模块中(AS标准目录结构)创建服务xxx类,在该类上添加@JudyBridge注解，例如：
 
@@ -57,9 +57,9 @@ public class LoginJudy{
 }
 ```
 
-**PS：服务类就是供其他业务模块调用的具体实现**
+###### *PS：服务类就是供其他业务模块调用的具体实现*
 
-4、在Terminal执行如下命令(生成中间层抽象类，每次对服务类有任何改动，重新执行命令即可，无需重新build项目)：
+4、在Terminal执行如下命令(生成中间层接口，每次对服务类有任何改动，重新执行命令即可，无需重新build项目)：
 
 ```
 //mac
@@ -69,7 +69,7 @@ public class LoginJudy{
 gradlew generatorJudyBridge
 ```
 
-**PS：也可以在AndroidStudio 右侧边栏gradle(Gradle projects) ---> [基础库名称] ---> Tasks ---> judy ---> 双击generatorJudyBridge**
+###### *PS：也可以在AndroidStudio 右侧边栏gradle(Gradle projects) ---> [:基础库名称] ---> Tasks ---> judy ---> 双击generatorJudyBridge*
 
 
 5、调用：
@@ -78,7 +78,9 @@ gradlew generatorJudyBridge
 Judy.getBridge(LoginJudyBridge.class).isLogin();
 ```
 
-**PS：详细使用示例请参考代码。**
+###### *PS：详细使用示例请参考代码。*
+
+###### *PS:clone项目后，需要先执行一次右侧边栏gradle(Gradle projects) ---> :judy-plugin ---> Tasks ---> upload ---> 双击uploadArchives 生成本地仓库*
 
 ## judy.bridge插件配置属性说明
 
@@ -100,7 +102,7 @@ parseFileSuffix|模块文件的后缀名规则，用于遍历文件时判断并�
 proxyFileSuffix|生成中间层接口文件的后缀名,生成后的中间层接口文件名为："XXXBridge"|Bridge
 logDebug|是否输出debug日志信息|false
 
-**PS：属性配置参数均为可选，根据需求自行选择。**
+###### *PS：属性配置参数均为可选，根据需求自行选择。*
 
 ## 混淆
 开启混淆配置后，所有服务类需要实现KeepSource接口，并在proguard-rules.pro中添加如下配置。
@@ -114,13 +116,13 @@ logDebug|是否输出debug日志信息|false
 
 ## 原理
 
-模块化开发通常情况都会有一个基础库，各业务模块都会依赖基础库。正是利用这种特性，通过自定义 Gradle Plugin 实现apt功能，生成各业务模块服务的中间层抽象类（ 接口 ）至基础库下（ 路径：build/generated/source/judyBridge/ ），
+模块化开发通常情况都会有一个基础库，各业务模块都会依赖基础库。正是利用这种特性，通过自定义 Gradle Plugin 实现apt功能，生成各业务模块服务的中间层接口至基础库下（ 路径：build/generated/source/judyBridge/ ），
 业务模块通过动态代理、反射调用对应的具体实现，达到跨模块通信的功能。原理和实现代码都非常简单，源码加上注解也只有10+个类，学习相对简单。
 
 
 自定义Gradle Plugin apt功能简述：
 1. 对根路径下的所有模块源码目录（ AndroidStudio 标准目录结构的src下 ）进行递归遍历 java 源文件。
-2. 解析该类是否包含指定注解,如果包含则解析并在指定路径下（ 路径：build/generated/source/judyBridge/ ）生成中间层抽象类源文件，否则跳过该文件。
+2. 解析该类是否包含指定注解,如果包含则解析并在指定路径下（ 基础库路径：build/generated/source/judyBridge/ ）生成中间层接口源文件，否则跳过该文件。
 
 ### 相关目录结构说明
 
