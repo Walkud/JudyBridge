@@ -33,6 +33,8 @@ public abstract class JudyParse {
 
     /**
      * 解析JudyBridge注解源文件
+     *
+     * @throws IOException 会抛出IO异常
      */
     public abstract void parse() throws IOException;
 
@@ -40,18 +42,16 @@ public abstract class JudyParse {
      * 生成中间层源码java文件
      *
      * @param file 生成中间层源码文件目录
+     * @throws IOException 会抛出IO异常
      */
     public abstract void writeTo(File file) throws IOException;
 
     /**
      * 检查是否符合JudyBridge条件
+     * 检查目标文件是否包含目标注解
      *
-     * @return
-     */
-    /**
-     * 检查是否符合JudyBridge条件
-     *
-     * @return
+     * @param annotationName 目标注解
+     * @return 是否包含目标注解
      */
     public boolean checkValid(String annotationName) {
         NodeList<TypeDeclaration<?>> types = compilationUnit.getTypes();

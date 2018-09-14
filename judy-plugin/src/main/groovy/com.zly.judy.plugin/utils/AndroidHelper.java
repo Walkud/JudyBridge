@@ -111,8 +111,8 @@ public class AndroidHelper {
     /**
      * 字符串是否为空
      *
-     * @param str
-     * @return
+     * @param str 需要判断的字符串
+     * @return 返回是否为空结果 true：为空，false:不为空
      */
     public static boolean isEmpty(String str) {
         if (str == null || str.trim().length() == 0) {

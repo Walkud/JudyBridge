@@ -18,7 +18,7 @@ import io.reactivex.Observable;
  */
 @JudyBridge
 @TargetClass("acbss")//(RE)
-public class SimpleJudy implements KeepSource{
+public class SimpleJudy implements KeepSource {
 
     /**
      * 常量(RE)
@@ -64,4 +64,5 @@ public class SimpleJudy implements KeepSource{
     public static int staticMethod() {
         return 1;
     }
+
 }

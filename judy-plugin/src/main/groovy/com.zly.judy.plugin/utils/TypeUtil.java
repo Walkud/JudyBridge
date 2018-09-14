@@ -23,7 +23,7 @@ public class TypeUtil {
      *
      * @param typeSet 有效类型
      * @param name    导入类型
-     * @return
+     * @return 返回导入的类型是否有效，true：有效，false：无效
      */
     public static boolean isValidType(String typeSet, String name) {
         int index = typeSet.indexOf("<");
