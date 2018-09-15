@@ -80,7 +80,7 @@ Judy.getBridge(LoginJudyBridge.class).isLogin();
 
 ###### *PS：详细使用示例请参考代码。*
 
-###### *PS:clone项目后，需要先执行一次右侧边栏gradle(Gradle projects) ---> :judy-plugin ---> Tasks ---> upload ---> 双击uploadArchives 生成本地仓库*
+###### *PS:clone项目后同步Gradle异常解决方法。 [传送门](./material/md/其它问题.md)*
 
 ## judy.bridge插件配置属性说明
 
