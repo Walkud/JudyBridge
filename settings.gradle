@@ -1,2 +1,2 @@
 include ':app', ':judy-plugin', ':BaseLib', 'judy-api'
-include ':module:ModuleLogin', ':module:ModuleA', ':module:ModuleB'
+include ':module:ModuleLogin', ':module:ModuleA', ':module:ModuleB',':module:ModuleC'

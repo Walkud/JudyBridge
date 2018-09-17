@@ -124,6 +124,10 @@ logDebug|是否输出debug日志信息|false
 1. 对根路径下的所有模块源码目录（ AndroidStudio 标准目录结构的src下 ）进行递归遍历 java 源文件。
 2. 解析该类是否包含指定注解,如果包含则解析并在指定路径下（ 基础库路径：build/generated/source/judyBridge/ ）生成中间层接口源文件，否则跳过该文件。
 
+
+###依赖关系
+![依赖关系图](./material/依赖关系图.png)
+
 ### 相关目录结构说明
 
 ```
@@ -132,6 +136,7 @@ BaseLib				//基础库
 module				//各业务模块目录
   --- MoudleA			//A业务模块
   --- ModuleB		    	//B业务模块
+  --- ModuleC		    	//C业务模块
   --- ModuleLogin		//登录业务模块
 judy-api			//依赖库(功能：根据中间层接口执行动态代理、反射调用对应的具体实现)
 judy-plugin			//依赖Gralde插件(功能：解析源文件生层中间层)

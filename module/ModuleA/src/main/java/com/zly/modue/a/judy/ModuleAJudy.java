@@ -11,7 +11,7 @@ import com.zly.modue.a.ModuleAFragment;
 import com.zly.modue.a.UserCenterActivity;
 
 /**
- * 模块A对外暴露的Api
+ * 模块A对外暴露的服务
  * Created by Zhuliya on 2018/8/23
  */
 @JudyBridge

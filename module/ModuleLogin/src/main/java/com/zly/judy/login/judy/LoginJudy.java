@@ -12,7 +12,7 @@ import com.zly.judy.login.JudyTest;
 import com.zly.judy.login.LoginActivity;
 
 /**
- * 登录模块对外暴露的Api
+ * 登录模块对外暴露的服务
  * Created by Zhuliya on 2018/8/23
  */
 @JudyBridge

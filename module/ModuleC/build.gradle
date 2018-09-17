@@ -1,30 +1,32 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
-        applicationId "com.zly.judy.bridge"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':BaseLib')
-    implementation project(':module:ModuleA')
-    implementation project(':module:ModuleB')
-    implementation project(':module:ModuleC')
-    implementation project(':module:ModuleLogin')
+    implementation project(':judy-api')
+
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["design"]
 }

@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class MainActivity extends BaseActivity {
 
-    private List<String> list = Arrays.asList("登录", "个人中心", "显示模块A Fragment");
+    private List<String> list = Arrays.asList("登录", "个人中心", "模块B使用其它模块视图", "模块B调用app服务", "进入模块C主页");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,12 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 2://显示模块A Fragment
                         forword(FragmentDemoActivity.class);
+                        break;
+                    case 3://模块B调用app服务
+                        JudyHelper.getModuleBJudyBridge().forwordCallAppActivity(MainActivity.this);
+                        break;
+                    case 4://进入模块C主页
+                        JudyHelper.getModuleCJudyBridge().forwordModuleCActivity(MainActivity.this);
                         break;
                 }
             }

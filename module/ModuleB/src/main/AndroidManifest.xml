@@ -2,7 +2,11 @@
     package="com.zly.module.b">
 
     <application>
-        <activity android:name=".FragmentDemoActivity"
-            android:label="显示模块A Fragment"/>
+        <activity
+            android:name=".FragmentDemoActivity"
+            android:label="模块B 显示模块A中Fragment" />
+        <activity
+            android:name=".CallAppActivity"
+            android:label="模块B CallApp" />
     </application>
 </manifest>
