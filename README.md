@@ -125,7 +125,7 @@ logDebug|是否输出debug日志信息|false
 2. 解析该类是否包含指定注解,如果包含则解析并在指定路径下（ 基础库路径：build/generated/source/judyBridge/ ）生成中间层接口源文件，否则跳过该文件。
 
 
-###依赖关系
+### 依赖关系
 ![依赖关系图](./material/依赖关系图.png)
 
 ### 相关目录结构说明
