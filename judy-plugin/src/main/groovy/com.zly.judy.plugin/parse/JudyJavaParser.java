@@ -66,12 +66,23 @@ public class JudyJavaParser extends JudyParse {
      * 处理类注解
      */
     private void parseAnnotation() {
-        //修改注解
+        //添加TargetClass注解引用
         ImportDeclaration importDeclaration = new ImportDeclaration(TypeUtil.TARGET_CLASS.reflectionName(), false, false);
         compilationUnit.getImports().add(importDeclaration);
+
+        //移除指定注解，记录其余有效的注解名称
         NodeList<AnnotationExpr> annotationExprs = typeDeclaration.getAnnotations();
-        //清空所有无用注解
-        annotationExprs.clear();
+        Iterator<AnnotationExpr> iterator = annotationExprs.iterator();
+        while (iterator.hasNext()) {
+            AnnotationExpr annotationExpr = iterator.next();
+            if (TypeUtil.JUDY_BRIDGE.simpleName().equals(annotationExpr.getNameAsString())) {
+                //移除JudyBridge注解
+                iterator.remove();
+            } else {
+                //添加自定义注解类型，用于判断引用有效性
+                typeSets.add(annotationExpr.getNameAsString());
+            }
+        }
 
         //构建目标注解参数
         String typeName = typeDeclaration.getNameAsString();
@@ -142,13 +153,19 @@ public class JudyJavaParser extends JudyParse {
      */
     private void parseMethodDeclaration(MethodDeclaration methodDeclaration) {
 
-        //记录参数类型
+        //记录参数类型名称
         NodeList<Parameter> nodeList = methodDeclaration.getParameters();
         for (Parameter parameter : nodeList) {
             typeSets.add(parameter.getTypeAsString());
         }
 
-        //记录返回类型
+        ////记录注解类型名称
+        NodeList<AnnotationExpr> annotationExprs = methodDeclaration.getAnnotations();
+        for (AnnotationExpr annotationExpr : annotationExprs) {
+            typeSets.add(annotationExpr.getNameAsString());
+        }
+
+        //记录返回类型名称
         typeSets.add(methodDeclaration.getTypeAsString());
 
         methodDeclaration.getModifiers().clear();

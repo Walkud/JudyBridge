@@ -4,6 +4,7 @@ import com.zly.judy.plugin.parse.JudyJavaParser
 import com.zly.judy.plugin.parse.JudyParse
 import com.zly.judy.plugin.utils.AndroidHelper
 import com.zly.judy.plugin.utils.MLog
+import com.zly.judy.plugin.utils.TypeUtil
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.tasks.TaskAction
@@ -78,7 +79,7 @@ class GeneratorTask extends DefaultTask {
                 try {
                     JudyParse parser = new JudyJavaParser(it, configExtension)
 
-                    if (parser.checkValid("JudyBridge")) {
+                    if (parser.checkValid(TypeUtil.JUDY_BRIDGE.simpleName())) {
                         parser.parse()
                         parser.writeTo(outDir)
                     }

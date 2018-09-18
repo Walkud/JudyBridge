@@ -2,6 +2,7 @@ package com.zly.module.c.judy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.module.c.ModuleCActivity;
@@ -12,6 +13,13 @@ import com.zly.module.c.ModuleCActivity;
  */
 @JudyBridge
 public class ModuleCJudy {
+
+    /**
+     * 初始化SDK，可在Application onCreate调用
+     */
+    public void initSdk() {
+        Log.d("ModuleCJudy", "initSdk");
+    }
 
     /**
      * 进入ModuleC主页

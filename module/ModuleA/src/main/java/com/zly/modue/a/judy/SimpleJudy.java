@@ -2,10 +2,10 @@ package com.zly.modue.a.judy;
 
 import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
-import com.zly.judy.api.annontations.TargetClass;
 import com.zly.judy.lib.bean.Cup;
 import com.zly.judy.lib.bean.GlassCup;
 import com.zly.judy.lib.bean.User;
+import com.zly.judy.lib.common.annontations.ClassAnn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import io.reactivex.Observable;
  * Created by Zhuliya on 2018/9/5
  */
 @JudyBridge
-@TargetClass("acbss")//(RE)
+@ClassAnn
 public class SimpleJudy extends User implements KeepSource {//继承User(RE)
 
     /**

@@ -12,7 +12,10 @@ public class TypeUtil {
      * 生成代理接口的被抽象类的目标注解类型，详见judy-api
      */
     public static final ClassName TARGET_CLASS = ClassName.get("com.zly.judy.api.annontations", "TargetClass");
-
+    /**
+     * 扫描服务类标识注解类型，详见judy-api
+     */
+    public static final ClassName JUDY_BRIDGE = ClassName.get("com.zly.judy.api.annontations", "JudyBridge");
     /**
      * 保持源码接口类型,详见judy-api
      */

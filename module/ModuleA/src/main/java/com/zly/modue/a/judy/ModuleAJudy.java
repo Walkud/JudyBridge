@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.judy.lib.common.JudyHelper;
+import com.zly.judy.lib.common.annontations.ClassAnn;
 import com.zly.modue.a.ModuleAFragment;
 import com.zly.modue.a.UserCenterActivity;
 
@@ -15,6 +16,7 @@ import com.zly.modue.a.UserCenterActivity;
  * Created by Zhuliya on 2018/8/23
  */
 @JudyBridge
+@ClassAnn
 public class ModuleAJudy implements KeepSource {
 
     /**

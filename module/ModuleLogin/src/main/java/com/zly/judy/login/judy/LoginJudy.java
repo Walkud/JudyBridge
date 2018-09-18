@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.judy.lib.bean.User;
+import com.zly.judy.lib.common.annontations.MethodAnn;
 import com.zly.judy.login.JudyTest;
 import com.zly.judy.login.LoginActivity;
 
@@ -16,7 +18,15 @@ import com.zly.judy.login.LoginActivity;
  * Created by Zhuliya on 2018/8/23
  */
 @JudyBridge
-public class LoginJudy implements KeepSource{
+public class LoginJudy implements KeepSource {
+
+    /**
+     * 初始化SDK，可在Application onCreate调用
+     */
+    public void initSdk() {
+        Log.d("ModuleCJudy", "initSdk");
+    }
+
 
     /**
      * 进入登录页面
@@ -51,6 +61,7 @@ public class LoginJudy implements KeepSource{
      *
      * @return
      */
+    @MethodAnn
     public boolean isLogin() {
         return JudyTest.isLogin();
     }
@@ -60,6 +71,7 @@ public class LoginJudy implements KeepSource{
      *
      * @return
      */
+    @MethodAnn
     public User getUser() {
         return JudyTest.getUser();
     }
