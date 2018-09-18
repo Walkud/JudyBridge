@@ -78,7 +78,7 @@ gradlew generatorJudyBridge
 Judy.getBridge(LoginJudyBridge.class).isLogin();
 ```
 
-###### *PS：详细使用示例请参考代码。*
+###### *PS：详细使用请参考示例demo。*
 
 ###### *PS:clone项目后同步Gradle异常解决方法。 [传送门](./material/md/其它问题.md)*
 
@@ -143,6 +143,8 @@ judy-plugin			//依赖Gralde插件(功能：解析源文件生层中间层)
 ```
 
 ## 其它
+
+[拦截器](./material/md/拦截器.md)
 
 [版本更新](./material/md/版本更新.md)
 

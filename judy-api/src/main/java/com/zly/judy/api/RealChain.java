@@ -3,7 +3,7 @@ package com.zly.judy.api;
 import java.util.List;
 
 /**
- * 具体的拦截链
+ * 实际的链式处理类
  * 参考okhttp 拦截器责任链设计模式
  * Created by Zhuliya on 2018/9/17
  */
@@ -36,7 +36,7 @@ public class RealChain implements Interceptor.Chain {
     }
 
     /**
-     * 继续进行
+     * 继续进行，实现了链式调用的核心方法
      *
      * @return 返回服务类方法的返回值
      */
