@@ -154,7 +154,7 @@ judy-plugin			//依赖Gralde插件(功能：解析源文件生层中间层)
 
 欢迎进群交流心得，加群请说明意图，谢谢。
 
-![QQ群二维码](./material/JudyBridge 交流群群二维码.png)
+![QQ群二维码](./material/JudyBridge_qrcode.png)
 
 
 ## License
