@@ -150,6 +150,12 @@ judy-plugin			//依赖Gralde插件(功能：解析源文件生层中间层)
 
 [其它问题](./material/md/其它问题.md)
 
+## 技术交流
+
+欢迎进群交流心得，加群请说明意图，谢谢。
+
+![QQ群二维码](./material/JudyBridge 交流群群二维码.png)
+
 
 ## License
 
