@@ -84,7 +84,7 @@ Judy.getBridge(LoginJudyBridge.class).isLogin();
 
 ## judy.bridge插件配置属性说明
 
-在配置apply plugin: 'judy.bridge'构建脚本中添加如下配置：
+在配置apply plugin: 'judy.bridge'构建脚本中（ 基础库 ）添加如下配置：
 
 ```
 //参考ConfigExtension
@@ -94,6 +94,8 @@ judyConfig {
     logDebug true//是否输出debug日志信息，默认：false,不输出
 }
 ```
+
+###### *PS：默认不需要配置插件属性*
 
 ### 属性说明
 属性名|说明|默认值
@@ -131,6 +133,7 @@ logDebug|是否输出debug日志信息|false
 ### 相关目录结构说明
 
 ```
+//demo模块
 app				//主项目(壳工程)
 BaseLib				//基础库
 module				//各业务模块目录
@@ -138,6 +141,8 @@ module				//各业务模块目录
   --- ModuleB		    	//B业务模块
   --- ModuleC		    	//C业务模块
   --- ModuleLogin		//登录业务模块
+  
+//核心库模块
 judy-api			//依赖库(功能：根据中间层接口执行动态代理、反射调用对应的具体实现)
 judy-plugin			//依赖Gralde插件(功能：解析源文件生层中间层)
 ```
