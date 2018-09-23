@@ -80,8 +80,6 @@ Judy.getBridge(LoginJudyBridge.class).isLogin();
 
 ###### *PS：详细使用请参考示例demo。*
 
-###### *PS:clone项目后同步Gradle异常解决方法。 [传送门](./material/md/其它问题.md)*
-
 ## judy.bridge插件配置属性说明
 
 在配置apply plugin: 'judy.bridge'构建脚本中（ 基础库 ）添加如下配置：

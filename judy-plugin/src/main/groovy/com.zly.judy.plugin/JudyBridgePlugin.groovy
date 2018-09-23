@@ -1,15 +1,15 @@
 package com.zly.judy.plugin
 
 import com.android.build.gradle.api.BaseVariant
+import com.zly.judy.plugin.utils.AndroidHelper
+import com.zly.judy.plugin.utils.MLog
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
-import com.zly.judy.plugin.utils.AndroidHelper
-import com.zly.judy.plugin.utils.MLog
 
 /**
  * Judy Bridge apply插件
- * 1、根据变种构建代码解析与生成抽象类源文件的任务，并注册至registerJavaGeneratingTask
+ * 1、根据变种构建代码解析与生成中间层接口源文件的任务，并注册至registerJavaGeneratingTask
  * 2、创建一个独立执行的任务组(judy)
  * Created by Zhuliya on 2018/8/10
  */
@@ -17,7 +17,7 @@ class JudyBridgePlugin implements Plugin<Project> {
 
     Project project
     /**
-     * 生成的抽象类源文件路径
+     * 生成的中间层接口源文件路径
      */
     def outBuildDir
     /**
@@ -30,59 +30,59 @@ class JudyBridgePlugin implements Plugin<Project> {
         this.project = project
 
         if (!AndroidHelper.hasLibraryModule(project)) {
-            MLog.e("插件配置必须在Library Module下build.gradle文件中")
+            //插件配置必须在 Library Module 下 build.gradle 文件中
+            MLog.e("The plug-in configuration must be in the build.gradle file under the Library Module")
             return
         }
 
+        //构建输入中间层目录路径
         outBuildDir = "${project.buildDir}${File.separator}generated${File.separator}source${File.separator}judyBridge"
+        //创建扩展配置
         configExtension = project.extensions.create("judyConfig", ConfigExtension)
 
         project.afterEvaluate {
 
             //设置日志输出
-            MLog.setLogger(project.getLogger(), configExtension.logDebug)
+            MLog.setLogger(configExtension.logDebug)
 
-            MLog.d("Judy生成源码路径：${outBuildDir}")
+            //创建生成中间层接口源文件Task
+            Task generatorTask = createGeneratorTask(project)
 
             //创建一个独立执行的任务组(judy)
             Task task = project.task("generatorJudyBridge")
             task.setGroup("judy")
-
-            createGeneratorTask(project, task)
+            //添加独立执行创建中间层接口Task
+            task.dependsOn(generatorTask)
         }
     }
 
     /**
-     * 创建生成抽象类源文件Task
+     * 创建生成中间层接口源文件Task
      * @param project
      * @param isExceNow 是否立即执行
      * @return
      */
-    def createGeneratorTask(Project project, Task task) {
+    def createGeneratorTask(Project project) {
 
-        Task compile = null
+        Task generatorTask = project.tasks.create("executeGeneratorCode", GeneratorTask)
+        generatorTask.outputs.dir(outBuildDir)
 
         //遍历变种
         AndroidHelper.forEachVariant(project) { BaseVariant variant ->
-            //创建一个生成任务
-            String variantName = AndroidHelper.captureChar(variant.name)
-            compile = project.tasks.create("judy${variantName}", GeneratorTask)
-            //为任务创建一个输入属性
-            compile.inputs.property 'package', variant.applicationId
-            //为任务创建一个输出文件 这里是outBuildDir
-            compile.outputs.dir(outBuildDir)
 
-            //设置一个固定的输入文件,触发GeneratorTask执行run，理论上build.gradle必定存在
-            File inputFile = new File(project.projectDir, "build.gradle")
-            compile.inputs.file(inputFile)
+            if (configExtension.alwaysCompileJava) {
+                //总是编译java文件
+                def variantName = AndroidHelper.captureChar(variant.getName())
+                Task compileJavaTask = project.tasks.getByName("compile${variantName}JavaWithJavac")
+                compileJavaTask.outputs.upToDateWhen { false }
+            }
 
-            variant.registerJavaGeneratingTask(compile,
-                    compile.outputs.files.files)
+            //注册Java生成任务，添加编译目录（build/generated/source/judyBridge）
+            variant.registerJavaGeneratingTask(generatorTask,
+                    generatorTask.outputs.files.files)
         }
 
-        if (compile != null) {
-            task.dependsOn(compile)
-        }
+        return generatorTask
     }
 
 }

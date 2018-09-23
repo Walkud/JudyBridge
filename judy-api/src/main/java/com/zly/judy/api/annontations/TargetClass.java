@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * Bridge目标Class注解
- * 该注解无需手动配置，由judy-plugin插件生成抽象类时自动配置
+ * 该注解无需手动配置，由judy-plugin插件生成中间层接口时自动配置
  * Created by Zhuliya on 2018/7/2
  */
 @Target(ElementType.TYPE)
