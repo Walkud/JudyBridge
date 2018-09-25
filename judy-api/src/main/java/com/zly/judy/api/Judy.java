@@ -24,6 +24,9 @@ public class Judy {
      */
     private final List<Interceptor> interceptors = new ArrayList<>();
 
+    private Judy() {
+    }
+
     /**
      * 单例
      */
