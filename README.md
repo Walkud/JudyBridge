@@ -101,6 +101,7 @@ judyConfig {
 parseFileSuffix|模块文件的后缀名规则，用于遍历文件时判断并快速过滤不需要解析文件，可以提升构建速度|null
 proxyFileSuffix|生成中间层接口文件的后缀名,生成后的中间层接口文件名为："XXXBridge"|Bridge
 logDebug|是否输出debug日志信息|false
+alwaysCompileJava|总是编译java文件(false为关闭) 该任务相对比较耗时，建议忽略该配置 ( *ver:0.4.0新增* ) [详细说明](./material/md/其它问题.md#build或运行是偶现出现找不到符号的错误已解决) |false
 
 ###### *PS：属性配置参数均为可选，根据需求自行选择。*
 
