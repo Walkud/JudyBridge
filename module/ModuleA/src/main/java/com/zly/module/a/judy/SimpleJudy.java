@@ -1,4 +1,4 @@
-package com.zly.modue.a.judy;
+package com.zly.module.a.judy;
 
 import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;

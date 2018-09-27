@@ -1,4 +1,4 @@
-package com.zly.modue.a.judy;
+package com.zly.module.a.judy;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.judy.lib.common.JudyHelper;
 import com.zly.judy.lib.common.annontations.ClassAnn;
-import com.zly.modue.a.ModuleAFragment;
-import com.zly.modue.a.UserCenterActivity;
+import com.zly.module.a.ModuleAFragment;
+import com.zly.module.a.UserCenterActivity;
 
 /**
  * 模块A对外暴露的服务
