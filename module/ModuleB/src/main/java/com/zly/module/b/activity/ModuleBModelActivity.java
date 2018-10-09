@@ -42,13 +42,14 @@ public class ModuleBModelActivity extends BaseActivity {
      */
     @SuppressLint("CheckResult")
     private void queryMoney() {
-        User user = JudyTest.getUser();
+        textView.setText("查询中...");
+        final User user = JudyTest.getUser();
         new MbModel().queryMoneyByUserId(user.getUserId())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        String text = "账户余额： " + aLong.toString() + " 元";
+                        String text = "用户:" + user.getName() + "，账户余额： " + aLong.toString() + " 元";
 
                         textView.setText(text);
                     }

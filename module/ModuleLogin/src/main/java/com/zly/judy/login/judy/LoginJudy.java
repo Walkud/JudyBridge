@@ -8,9 +8,8 @@ import android.util.Log;
 
 import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
-import com.zly.judy.lib.bean.User;
+import com.zly.judy.lib.common.JudyTest;
 import com.zly.judy.lib.common.annontations.MethodAnn;
-import com.zly.judy.login.JudyTest;
 import com.zly.judy.login.LoginActivity;
 
 /**
@@ -26,7 +25,6 @@ public class LoginJudy implements KeepSource {
     public void initSdk() {
         Log.d("ModuleCJudy", "initSdk");
     }
-
 
     /**
      * 进入登录页面
@@ -44,6 +42,7 @@ public class LoginJudy implements KeepSource {
      * @param context
      * @param targetClass 登录成功目标跳转页
      */
+    @MethodAnn
     public void forwrodLogin(Context context, String targetClass) {
         Intent intent = new Intent(context, LoginActivity.class);
         if (!TextUtils.isEmpty(targetClass)) {
@@ -57,30 +56,10 @@ public class LoginJudy implements KeepSource {
     }
 
     /**
-     * 是否登录
-     *
-     * @return
-     */
-    @MethodAnn
-    public boolean isLogin() {
-        return JudyTest.isLogin();
-    }
-
-    /**
-     * 获取用户信息
-     *
-     * @return
-     */
-    @MethodAnn
-    public User getUser() {
-        return JudyTest.getUser();
-    }
-
-    /**
-     * 注销
+     * 注销操作
      */
     public void logout() {
         JudyTest.setUser(null);
+        //执行其它注销操作
     }
-
 }

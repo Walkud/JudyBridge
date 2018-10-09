@@ -8,5 +8,8 @@
         <activity
             android:name=".CallAppActivity"
             android:label="模块B CallApp" />
+        <activity
+            android:name=".activity.ModuleBModelActivity"
+            android:label="模块B 查询用户余额" />
     </application>
 </manifest>

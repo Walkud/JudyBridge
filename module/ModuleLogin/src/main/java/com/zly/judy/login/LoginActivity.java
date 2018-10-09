@@ -2,7 +2,6 @@ package com.zly.judy.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +9,7 @@ import android.widget.EditText;
 
 import com.zly.judy.lib.base.BaseActivity;
 import com.zly.judy.lib.bean.User;
+import com.zly.judy.lib.common.JudyTest;
 
 /**
  * 登录
@@ -60,7 +60,7 @@ public class LoginActivity extends BaseActivity {
         String userName = userNameEt.getText().toString();
         String password = passwordEt.getText().toString();
 
-        User user = new User(userName, "JudyBridge");
+        User user = new User(101, userName, "JudyBridge");
         JudyTest.setUser(user);
 
         showToast("登录成功：" + userName + "," + password);

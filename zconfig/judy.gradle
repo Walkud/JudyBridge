@@ -31,13 +31,53 @@ if (!isMainApp) {
             debug {
                 if (appPlugin) {
                     //独立运行模式 ，指定debugRoot路径
-                    setRoot('src/main/debug')
-                }else{
-                    setRoot('src/debug')
+                    setRoot('src/aloneRun')
+                    afterEvaluate {
+                        createAloneRunFile()
+                    }
+                } else {
+                    afterEvaluate {
+                        tasks.getByName("compileDebugJavaWithJavac") {
+                            outputs.upToDateWhen {
+                                //根据是否存在独立标记来返回是否使用缓存
+                                return !deleteAloneRunFile()
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+}
+
+/**
+ * 创建独立运行临时标记文件，用于解决当转换使用独立模块运行后再切换为集成模式后，运行app会出现异常
+ * 原因是由于切换后compileDebugJavaWithJavac 还是存在缓存，被标记为UP-TO-DATE，导致运行app时找不到独立模块的测试类
+ * @return
+ */
+def createAloneRunFile() {
+    File dirFile = new File("${buildDir}${File.separator}tmp")
+    if (!dirFile.exists()) {
+        dirFile.mkdirs()
+    }
+
+    File aloneRunFlagFile = new File(dirFile, "aloneRun")
+    if (!aloneRunFlagFile.exists()) {
+        aloneRunFlagFile.createNewFile()
+    }
+}
+
+/**
+ * 删除独立运行临时标记文件
+ * @return true：存在独立运行临时标记，false：不存在独立运行标记
+ */
+boolean deleteAloneRunFile() {
+    File dirFile = new File("${buildDir}${File.separator}tmp", "aloneRun")
+    if (dirFile.exists()) {
+        dirFile.delete()
+        return true
+    }
+    return false
 }
 
 /**

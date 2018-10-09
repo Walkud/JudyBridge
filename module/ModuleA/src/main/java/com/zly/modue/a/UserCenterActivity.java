@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.zly.judy.lib.base.BaseActivity;
 import com.zly.judy.lib.bean.User;
 import com.zly.judy.lib.common.JudyHelper;
+import com.zly.judy.lib.common.JudyTest;
 
 /**
  * 个人中心
@@ -42,7 +43,7 @@ public class UserCenterActivity extends BaseActivity {
      * 初始化
      */
     private void init() {
-        User user = JudyHelper.getLoginJudyBridge().getUser();
+        User user = JudyTest.getUser();
 
         userNameTv.setText(user.getName());
         nickTv.setText(user.getNick());

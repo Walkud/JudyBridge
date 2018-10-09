@@ -11,7 +11,7 @@ import com.zly.judy.lib.common.JudyTest;
 import com.zly.module.b.activity.ModuleBModelActivity;
 
 /**
- * 独立模块测试UI
+ * 独立模块测试UI,主要用于跳转需要测试的业务模块页面
  * Created by Zhuliya on 2018/9/20
  */
 public class TestActivity extends BaseActivity {
@@ -30,7 +30,6 @@ public class TestActivity extends BaseActivity {
                 forword(cls);
             }
         });
-
     }
 
     /**
@@ -45,7 +44,5 @@ public class TestActivity extends BaseActivity {
         } else {
             textView.setText("请先登录");
         }
-
-
     }
 }

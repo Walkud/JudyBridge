@@ -13,9 +13,14 @@ import com.zly.judy.lib.common.interceptor.JudyMethodInterceptor;
  */
 public class BaseApplication extends Application {
 
+
+    public static BaseApplication app;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        app = this;
+//        Judy.init(this);
 
         //添加拦截器
         Judy.instance()

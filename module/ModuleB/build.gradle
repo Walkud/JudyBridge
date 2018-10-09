@@ -1,17 +1,16 @@
-apply plugin: 'com.android.library'
+apply from: rootProject.file('zconfig/judy.gradle')
 
 android {
-    compileSdkVersion 28
-
-
+    compileSdkVersion Integer.parseInt(COMPILE_SDK_VER)
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 28
+        if (project.ext.appPlugin) {
+            applicationId "com.zly.module.b"
+        }
+        minSdkVersion Integer.parseInt(MIN_SDK_VER)
+        targetSdkVersion Integer.parseInt(TARGET_SDK_VER)
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
 

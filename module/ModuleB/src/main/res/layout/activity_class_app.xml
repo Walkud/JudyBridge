@@ -8,6 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="点击调用app提供的服务" />
+        android:text="点击调用app提供的服务123" />
 
 </FrameLayout>

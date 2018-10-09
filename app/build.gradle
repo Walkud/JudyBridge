@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
+apply from: rootProject.file('zconfig/judy.gradle')
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion Integer.parseInt(COMPILE_SDK_VER)
     defaultConfig {
         applicationId "com.zly.judy.bridge"
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion Integer.parseInt(MIN_SDK_VER)
+        targetSdkVersion Integer.parseInt(TARGET_SDK_VER)
         versionCode 1
         versionName "1.0"
     }
@@ -23,8 +24,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':BaseLib')
-    implementation project(':module:ModuleA')
-    implementation project(':module:ModuleB')
-    implementation project(':module:ModuleC')
-    implementation project(':module:ModuleLogin')
+//    implementation project(':module:ModuleA')
+//    implementation project(':module:ModuleB')
+//    implementation project(':module:ModuleC')
+//    implementation project(':module:ModuleLogin')
+
+
+    dependModule 'ModuleA'
+    dependModule 'ModuleB'
+    dependModule 'ModuleC'
+    dependModule 'ModuleLogin'
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import com.zly.judy.bridge.adapter.MainAdapter;
 import com.zly.judy.lib.base.BaseActivity;
 import com.zly.judy.lib.common.JudyHelper;
+import com.zly.judy.lib.common.JudyTest;
 import com.zly.module.b.FragmentDemoActivity;
 
 import java.util.Arrays;
@@ -30,12 +31,13 @@ public class MainActivity extends BaseActivity {
         recyclerView.setAdapter(mainAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
+
         mainAdapter.setItemClick(new MainAdapter.ItemClick() {
             @Override
             public void onClick(View view, int position) {
                 switch (position) {
                     case 0://登录
-                        if (JudyHelper.getLoginJudyBridge().isLogin()) {
+                        if (JudyTest.isLogin()) {
                             showToast("已登录");
                         } else {
                             JudyHelper.getLoginJudyBridge().forwrodLogin(MainActivity.this);

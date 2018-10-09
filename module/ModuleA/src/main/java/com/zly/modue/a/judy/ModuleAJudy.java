@@ -1,12 +1,13 @@
 package com.zly.modue.a.judy;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.judy.lib.common.JudyHelper;
+import com.zly.judy.lib.common.JudyTest;
 import com.zly.judy.lib.common.annontations.ClassAnn;
 import com.zly.modue.a.ModuleAFragment;
 import com.zly.modue.a.UserCenterActivity;
@@ -22,15 +23,17 @@ public class ModuleAJudy implements KeepSource {
     /**
      * 进入个人中心
      *
-     * @param activity
+     * @param context
      */
-    public void forwordUserCenter(Activity activity) {
-        if (JudyHelper.getLoginJudyBridge().isLogin()) {
+    public void forwordUserCenter(Context context) {
+        if (JudyTest.isLogin()) {
+            Intent intent = new Intent(context, UserCenterActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //进入个人中心
-            activity.startActivity(new Intent(activity, UserCenterActivity.class));
+            context.startActivity(intent);
         } else {
             //未登录，先进入登录页面
-            JudyHelper.getLoginJudyBridge().forwrodLogin(activity, UserCenterActivity.class.getName());
+            JudyHelper.getLoginJudyBridge().forwrodLogin(context, UserCenterActivity.class.getName());
         }
     }
 

@@ -6,15 +6,25 @@ package com.zly.judy.lib.bean;
  */
 public class User {
 
+    private int userId;
     private String name;
     private String nick;
 
     public User() {
     }
 
-    public User(String name, String nick) {
+    public User(int userId, String name, String nick) {
+        this.userId = userId;
         this.name = name;
         this.nick = nick;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -31,5 +41,14 @@ public class User {
 
     public void setNick(String nick) {
         this.nick = nick;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", nick='" + nick + '\'' +
+                '}';
     }
 }

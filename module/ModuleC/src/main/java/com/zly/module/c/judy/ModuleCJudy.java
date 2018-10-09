@@ -1,6 +1,6 @@
 package com.zly.module.c.judy;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
@@ -24,10 +24,11 @@ public class ModuleCJudy {
     /**
      * 进入ModuleC主页
      *
-     * @param activity
+     * @param context
      */
-    public void forwordModuleCActivity(Activity activity) {
-        Intent intent = new Intent(activity, ModuleCActivity.class);
-        activity.startActivity(intent);
+    public void forwordModuleCActivity(Context context) {
+        Intent intent = new Intent(context, ModuleCActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 }

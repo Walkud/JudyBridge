@@ -1,12 +1,12 @@
 package com.zly.judy.lib.common;
 
 import com.zly.judy.api.Judy;
-import com.zly.judy.lib.judy.AppJudyBridge;
-import com.zly.judy.lib.judy.LoginJudyBridge;
-import com.zly.judy.lib.judy.ModuleAJudyBridge;
-import com.zly.judy.lib.judy.ModuleBJudyBridge;
-import com.zly.judy.lib.judy.ModuleCJudyBridge;
-import com.zly.judy.lib.judy.SimpleJudyBridge;
+import com.zly.judy.interlayer.AppJudyBridge;
+import com.zly.judy.interlayer.LoginJudyBridge;
+import com.zly.judy.interlayer.ModuleAJudyBridge;
+import com.zly.judy.interlayer.ModuleBJudyBridge;
+import com.zly.judy.interlayer.ModuleCJudyBridge;
+import com.zly.judy.interlayer.SimpleJudyBridge;
 
 /**
  * 自定义JudyBridge统一封装

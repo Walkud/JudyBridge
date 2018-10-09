@@ -7,7 +7,7 @@ import com.zly.judy.lib.bean.User;
 import com.zly.judy.lib.utils.SpUtil;
 
 /**
- * 注意：这个类是为了方便，用于存放缓存数据，实际项目不应该这么写
+ * 注意：这个类是为了方便，用于存放缓存数据
  * Created by Zhuliya on 2018/8/22
  */
 public class JudyTest {
