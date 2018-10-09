@@ -1,0 +1,78 @@
+//先加载local.properties文件
+Properties localProperties = new Properties()
+try {
+    def localFile = project.rootProject.file('local.properties')
+    if (localFile != null && localFile.exists()) {
+        localProperties.load(localFile.newDataInputStream())
+    }
+} catch (Exception ignored) {
+    println("local.properties not found")
+}
+
+//检查是否为主模块
+def isMainApp = project.pluginManager.hasPlugin('com.android.application')
+
+if (!isMainApp) {
+
+    //当前模块是否独立运行
+    def appPlugin = "true" == localProperties.getProperty(project.name)
+    ext.appPlugin = appPlugin
+
+    //本地属性文件独立运行模块配置
+    if (appPlugin) {
+        apply plugin: 'com.android.application'
+    } else {
+        apply plugin: 'com.android.library'
+    }
+
+    //配置独立运行模式下代码及资源路径等
+    android {
+        sourceSets {
+            debug {
+                if (appPlugin) {
+                    //独立运行模式 ，指定debugRoot路径
+                    setRoot('src/main/debug')
+                }else{
+                    setRoot('src/debug')
+                }
+            }
+        }
+    }
+}
+
+/**
+ * 主项目依赖组件模块
+ * @param dependMode 依赖模式 ，默认为implementation 或 api
+ * @param moduleName 模块名称 ，例如 : 'bundle_login'
+ */
+ext.dependModule = { dependMode = null, moduleName ->
+
+    //查找组件模块
+    def componentProject = rootProject.subprojects.find {
+        it.name == moduleName
+    }
+
+    if (componentProject == null) {
+        throw new IllegalArgumentException("主项目依赖错误，请检查依赖模块名称是否正确和根目录settings.gradle配置文件中是否include该模块：${moduleName}")
+    }
+
+    //判断依赖组件模块当前是否为独立运行模式
+    def appPlugin = "true" == localProperties.getProperty(componentProject.name)
+    println("appPlugin:${appPlugin},project:${project.name}")
+
+    if (appPlugin) {
+        //组件如果为独立运行，则跳过对该组件依赖
+        println("${componentProject.name} 模块为独立运行组件")
+        return
+    }
+
+    //判断依赖模式
+    def isNewGragle = (project.gradle.gradleVersion as float) >= 4.1F
+    if (dependMode == null) {
+        dependMode = isNewGragle ? 'implementation' : 'compile'
+    }
+    println("project:${project.getName()} -> ${dependMode} ${componentProject.name}")
+
+    //添加依赖
+    project.dependencies.add(dependMode, componentProject)
+}

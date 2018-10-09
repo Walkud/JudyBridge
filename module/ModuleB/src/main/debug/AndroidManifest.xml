@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zly.module.b"
+    android:sharedUserId="com.zly.judy.bridge">
+
+    <application
+        android:process="com.zly.judy.bridge"
+        android:taskAffinity="com.zly.judy.bridge"
+
+        android:label="@string/app_name">
+        <activity
+            android:name=".TestActivity"
+            android:theme="@style/AppTheme"
+            android:label="模块B 测试">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
