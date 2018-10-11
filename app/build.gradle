@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: rootProject.file('zconfig/judy.gradle')
+apply plugin: 'judy.alone.run'
 
 android {
     compileSdkVersion Integer.parseInt(COMPILE_SDK_VER)

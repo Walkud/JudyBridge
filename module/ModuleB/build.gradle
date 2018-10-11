@@ -1,10 +1,10 @@
-apply from: rootProject.file('zconfig/judy.gradle')
+apply plugin: 'judy.alone.run'
 
 android {
     compileSdkVersion Integer.parseInt(COMPILE_SDK_VER)
 
     defaultConfig {
-        if (project.ext.appPlugin) {
+        if (project.extensions.appPlugin) {
             applicationId "com.zly.module.b"
         }
         minSdkVersion Integer.parseInt(MIN_SDK_VER)

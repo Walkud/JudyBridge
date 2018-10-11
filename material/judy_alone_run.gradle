@@ -52,7 +52,7 @@ if (!isMainApp) {
 
 /**
  * 创建独立运行临时标记文件，用于解决当转换使用独立模块运行后再切换为集成模式后，运行app会出现异常
- * 原因是由于切换后compileDebugJavaWithJavac 还是存在缓存，被标记为UP-TO-DATE，导致运行app时找不到独立模块的测试类
+ * 原因是由于切换后compileDebugJavaWithJavac 还是存在缓存(缓存中存在独立运行的class)，任务被标记为UP-TO-DATE，导致运行app时找不到独立模块的class
  * @return
  */
 def createAloneRunFile() {
