@@ -4,18 +4,18 @@
 
 Android 一个轻量、自由、低学习成本的模块化库。该项目根据各业务模块自定义的服务类自动生成中间层接口，使各个业务模块之间解耦。
 
-轻量：judy-api与judy-plugin源码总共10+个类，代码量也较少，对原理的掌握也很容易。
+轻量：judy-api 只有7.51 KB，与 judy-plugin 源码总共10+个类，代码量也较少，对原理的掌握也很容易。
 
 自由：该库只做中间层生成与具体实现调用，其余异步控制等都自行控制。
 
-低学习成本：开发者只需关注服务类的实现，整个调用过程与平时开发相同，无需学习。
+低学习成本：开发者只需关注服务类的实现，整个调用过程与平时开发相同，无需学习；代码中全程注释，对原理的学习成本也极低。
 
 <img src="./material/app_demo.gif" width="30%">
 
 
 ## 使用说明
 
-[![Download-DemoApp](https://img.shields.io/badge/Download-DemoApp-green.svg)](./material/app-release.apk) ![judy-api](https://img.shields.io/badge/judy--api-0.3.0-blue.svg) ![judy-plugin](https://img.shields.io/badge/judy--plugin-0.3.0-blue.svg) [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/mit-license.php)
+[![Download-DemoApp](https://img.shields.io/badge/Download-DemoApp-green.svg)](./material/app-release.apk) ![judy-api](https://img.shields.io/badge/judy--api-0.3.0-blue.svg) ![judy-plugin](https://img.shields.io/badge/judy--plugin-0.4.0-blue.svg) [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/mit-license.php)
 
 
 1、在根目录build.gradle构建脚本中添加插件依赖：
@@ -28,7 +28,7 @@ buildscript {
    }
    
   dependencies {
-  	classpath 'com.zly.judy:judy-plugin:0.3.0'
+  	classpath 'com.zly.judy:judy-plugin:0.4.0'
   }
 }
 ```
@@ -80,11 +80,9 @@ Judy.getBridge(LoginJudyBridge.class).isLogin();
 
 ###### *PS：详细使用请参考示例demo。*
 
-###### *PS:clone项目后同步Gradle异常解决方法。 [传送门](./material/md/其它问题.md)*
-
 ## judy.bridge插件配置属性说明
 
-在配置apply plugin: 'judy.bridge'构建脚本中添加如下配置：
+在配置apply plugin: 'judy.bridge'构建脚本中（ 基础库 ）添加如下配置：
 
 ```
 //参考ConfigExtension
@@ -95,12 +93,15 @@ judyConfig {
 }
 ```
 
+###### *PS：默认不需要配置插件属性*
+
 ### 属性说明
 属性名|说明|默认值
 -----|---|----
 parseFileSuffix|模块文件的后缀名规则，用于遍历文件时判断并快速过滤不需要解析文件，可以提升构建速度|null
 proxyFileSuffix|生成中间层接口文件的后缀名,生成后的中间层接口文件名为："XXXBridge"|Bridge
 logDebug|是否输出debug日志信息|false
+alwaysCompileJava|总是编译java文件(false为关闭) 该任务相对比较耗时，建议忽略该配置 ( *ver:0.4.0新增* ) [详细说明](./material/md/其它问题.md#build或运行是偶现出现找不到符号的错误已解决) |false
 
 ###### *PS：属性配置参数均为可选，根据需求自行选择。*
 
@@ -131,6 +132,7 @@ logDebug|是否输出debug日志信息|false
 ### 相关目录结构说明
 
 ```
+//demo模块
 app				//主项目(壳工程)
 BaseLib				//基础库
 module				//各业务模块目录
@@ -138,6 +140,8 @@ module				//各业务模块目录
   --- ModuleB		    	//B业务模块
   --- ModuleC		    	//C业务模块
   --- ModuleLogin		//登录业务模块
+  
+//核心库模块
 judy-api			//依赖库(功能：根据中间层接口执行动态代理、反射调用对应的具体实现)
 judy-plugin			//依赖Gralde插件(功能：解析源文件生层中间层)
 ```
@@ -149,6 +153,12 @@ judy-plugin			//依赖Gralde插件(功能：解析源文件生层中间层)
 [版本更新](./material/md/版本更新.md)
 
 [其它问题](./material/md/其它问题.md)
+
+## 技术交流
+
+欢迎进群交流心得，加群请说明意图，谢谢。
+
+![QQ群二维码](./material/JudyBridge_qrcode.png)
 
 
 ## License

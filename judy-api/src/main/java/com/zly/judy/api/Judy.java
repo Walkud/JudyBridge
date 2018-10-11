@@ -31,6 +31,9 @@ public class Judy {
      */
     private final List<Interceptor> interceptors = new ArrayList<>();
 
+    private Judy() {
+    }
+
     /**
      * 代理开关(主要用于业务模块独立运行开关，默认开启代理)
      */

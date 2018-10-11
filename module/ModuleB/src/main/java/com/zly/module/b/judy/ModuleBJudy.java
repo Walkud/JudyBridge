@@ -3,6 +3,7 @@ package com.zly.module.b.judy;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.module.b.CallAppActivity;
 
@@ -11,7 +12,7 @@ import com.zly.module.b.CallAppActivity;
  * Created by Zhuliya on 2018/9/17
  */
 @JudyBridge
-public class ModuleBJudy {
+public class ModuleBJudy implements KeepSource{
 
     /**
      * 进入CallAppActivity
@@ -20,6 +21,5 @@ public class ModuleBJudy {
      */
     public void forwordCallAppActivity(Activity activity) {
         activity.startActivity(new Intent(activity, CallAppActivity.class));
-
     }
 }

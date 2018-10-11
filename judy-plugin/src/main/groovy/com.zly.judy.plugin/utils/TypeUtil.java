@@ -9,7 +9,7 @@ import com.squareup.javapoet.ClassName;
 public class TypeUtil {
 
     /**
-     * 生成代理接口的被抽象类的目标注解类型，详见judy-api
+     * 生成代理接口的被中间层接口的目标注解类型，详见judy-api
      */
     public static final ClassName TARGET_CLASS = ClassName.get("com.zly.judy.api.annontations", "TargetClass");
     /**

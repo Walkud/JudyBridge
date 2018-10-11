@@ -15,6 +15,7 @@ import io.reactivex.Observable;
 /**
  * 调试示例代码
  * (RE) :生成代码时会被移除
+ * 继承、静态方法、常量、属性在生成中间层接口中会被移除掉。
  * Created by Zhuliya on 2018/9/5
  */
 @JudyBridge

@@ -3,6 +3,7 @@ package com.zly.judy.bridge.judy;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
 import com.zly.judy.lib.base.BaseApplication;
 
@@ -11,7 +12,7 @@ import com.zly.judy.lib.base.BaseApplication;
  * Created by Zhuliya on 2018/9/17
  */
 @JudyBridge
-public class AppJudy {
+public class AppJudy implements KeepSource {
 
     /**
      * 显示AppToast
