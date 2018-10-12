@@ -15,11 +15,11 @@ def isMainApp = project.pluginManager.hasPlugin('com.android.application')
 if (!isMainApp) {
 
     //当前模块是否独立运行
-    def appPlugin = "true" == localProperties.getProperty(project.name)
-    ext.appPlugin = appPlugin
+    def aloneRun = "true" == localProperties.getProperty(project.name)
+    ext.aloneRun = aloneRun
 
     //本地属性文件独立运行模块配置
-    if (appPlugin) {
+    if (aloneRun) {
         apply plugin: 'com.android.application'
     } else {
         apply plugin: 'com.android.library'
@@ -29,7 +29,7 @@ if (!isMainApp) {
     android {
         sourceSets {
             debug {
-                if (appPlugin) {
+                if (aloneRun) {
                     //独立运行模式 ，指定debugRoot路径
                     setRoot('src/aloneRun')
                     afterEvaluate {
@@ -97,10 +97,8 @@ ext.dependModule = { dependMode = null, moduleName ->
     }
 
     //判断依赖组件模块当前是否为独立运行模式
-    def appPlugin = "true" == localProperties.getProperty(componentProject.name)
-    println("appPlugin:${appPlugin},project:${project.name}")
-
-    if (appPlugin) {
+    def aloneRun = "true" == localProperties.getProperty(componentProject.name)
+    if (aloneRun) {
         //组件如果为独立运行，则跳过对该组件依赖
         println("${componentProject.name} 模块为独立运行组件")
         return

@@ -1,12 +1,14 @@
 apply plugin: 'judy.alone.run'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion Integer.parseInt(COMPILE_SDK_VER)
 
     defaultConfig {
-        if (project.extensions.appPlugin) {
-            applicationId "com.zly.module.b"
-        }
+        //自定义独立运行模块applicationId
+//        if (project.extensions.aloneRun) {
+//            applicationId "com.zly.module.b"
+//        }
         minSdkVersion Integer.parseInt(MIN_SDK_VER)
         targetSdkVersion Integer.parseInt(TARGET_SDK_VER)
         versionCode 1
@@ -27,4 +29,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':BaseLib')
+    annotationProcessor rootProject.ext.dependencies['butterknife-compiler']
 }
