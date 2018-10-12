@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 使用动态代理、反射调用最终目标实现类方法
  * Created by Zhuliya on 2018/6/29
  */
-public class Judy {
+public final class Judy {
 
     /**
      * 方法缓存，避免多次反射导致耗时
@@ -92,17 +92,18 @@ public class Judy {
         //将宿主登录信息保存在独立运行业务模块环境中，需要在宿主app和独立业务模块的AndroidManifest.xml添加相同的sharedUserId配置
         try {
             //构建宿主环境
-
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
 
             String sharedUserId = packageInfo.sharedUserId;
             if (TextUtils.isEmpty(sharedUserId)) {
-                throw new IllegalArgumentException("请在业务模块中AndroidManifest配置sharedUserId属性");
+                //必须要求添加sharedUserId属性
+                throw new IllegalArgumentException("Please configure the sharedUserId properties in the business module in the AndroidManifest file.");
             }
 
             return context.createPackageContext(sharedUserId, Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
         } catch (PackageManager.NameNotFoundException e) {
-            throw new RuntimeException("请先在手机中安装宿主apk,再运行独立业务模块");
+            //未找到宿主程序
+            throw new RuntimeException("Please install the host apk on the phone first, and then run the independent business module.");
         }
     }
 
