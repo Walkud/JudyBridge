@@ -58,7 +58,7 @@ public class ServiceMethod<T> {
     /**
      * 目标服务类Class
      *
-     * @return
+     * @return 返回目标服务类Class
      */
     public Class<?> getCls() {
         return cls;
@@ -67,7 +67,7 @@ public class ServiceMethod<T> {
     /**
      * 获取目标服务类方法
      *
-     * @return
+     * @return 返回目标服务类方法
      */
     public Method getMethod() {
         return method;
@@ -76,7 +76,7 @@ public class ServiceMethod<T> {
     /**
      * 获取调用实参
      *
-     * @return
+     * @return 返回调用实参
      */
     public Object[] getArgs() {
         return args;

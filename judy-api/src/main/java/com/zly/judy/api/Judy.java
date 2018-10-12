@@ -49,7 +49,7 @@ public final class Judy {
     /**
      * 获取Judy实例
      *
-     * @return
+     * @return 返回Judy实例
      */
     public static Judy instance() {
         return Hold.INSTANCE;
@@ -70,6 +70,7 @@ public final class Judy {
      * 添加拦截器
      *
      * @param interceptor 拦截器
+     * @return 返回Judy实例
      */
     public Judy addInterceptor(Interceptor interceptor) {
         if (interceptor == null) {
@@ -83,7 +84,8 @@ public final class Judy {
      * 开启独立运行模式，禁用动态代理
      * 注意：该方法只有当各业务模块需要独立运行时开启
      *
-     * @param context
+     * @param context 上下文环境
+     * @return 返回宿主上下文环境
      */
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public Context openAloneRun(Context context) {
