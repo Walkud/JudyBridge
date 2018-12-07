@@ -1,4 +1,4 @@
-package com.zly.modue.a;
+package com.zly.module.a;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
