@@ -34,5 +34,12 @@ public interface Interceptor {
          * @return 返回当前服务类方法的返回值
          */
         Object proceed();
+
+        /**
+         * 获取实际调用的实参
+         *
+         * @return 返回实际调用方法的实参
+         */
+        Object[] getArgs();
     }
 }

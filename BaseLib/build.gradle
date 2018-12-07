@@ -40,5 +40,7 @@ dependencies {
     api rootProject.ext.dependencies["rxandroid"]
     api rootProject.ext.dependencies["gson"]
     api rootProject.ext.dependencies['butterknife']
+    api rootProject.ext.dependencies['glide']
     annotationProcessor rootProject.ext.dependencies['butterknife-compiler']
+    annotationProcessor rootProject.ext.dependencies['glide-compiler']
 }

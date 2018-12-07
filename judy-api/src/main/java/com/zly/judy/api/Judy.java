@@ -128,8 +128,8 @@ public final class Judy {
                             return null;
                         }
 
-                        ServiceMethod<?> serviceMethod = getServiceMethod(method, args);
-                        return execute(serviceMethod);
+                        ServiceMethod<?> serviceMethod = getServiceMethod(method);
+                        return execute(serviceMethod, args);
                     }
                 });
     }
@@ -140,13 +140,13 @@ public final class Judy {
      * @param method 被调用的方法
      * @return 返回代理的方法
      */
-    private ServiceMethod<?> getServiceMethod(Method method, Object[] args) {
+    private ServiceMethod<?> getServiceMethod(Method method) {
         ServiceMethod<?> serviceMethod = serviceMethodCache.get(method);
         if (serviceMethod == null) {
             synchronized (serviceMethodCache) {
                 serviceMethod = serviceMethodCache.get(method);
                 if (serviceMethod == null) {
-                    serviceMethod = new ServiceMethod(method, args);
+                    serviceMethod = new ServiceMethod(method);
                     serviceMethodCache.put(method, serviceMethod);
                 }
             }
@@ -157,12 +157,12 @@ public final class Judy {
     /**
      * 执行调用
      */
-    private Object execute(ServiceMethod<?> serviceMethod) {
+    private Object execute(ServiceMethod<?> serviceMethod, Object[] args) {
         //构建拦截器集合
         List<Interceptor> interceptors = new ArrayList<>(this.interceptors);
         interceptors.add(new CallMethodInterceptor());//添加实际调用服务类方法的拦截器
 
-        RealChain chain = new RealChain(interceptors, serviceMethod);
+        RealChain chain = new RealChain(interceptors, serviceMethod, args);
         return chain.proceed();//执行
     }
 }

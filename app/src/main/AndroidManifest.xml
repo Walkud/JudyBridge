@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zly.judy.bridge">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.zly.judy.lib.base.BaseApplication"
         android:allowBackup="true"

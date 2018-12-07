@@ -25,4 +25,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':BaseLib')
+    annotationProcessor rootProject.ext.dependencies['butterknife-compiler']
 }

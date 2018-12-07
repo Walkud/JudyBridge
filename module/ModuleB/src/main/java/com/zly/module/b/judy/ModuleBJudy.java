@@ -5,6 +5,8 @@ import android.content.Intent;
 
 import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
+import com.zly.judy.lib.common.JudyHelper;
+import com.zly.judy.lib.common.JudyTest;
 import com.zly.module.b.CallAppActivity;
 
 /**
@@ -12,7 +14,7 @@ import com.zly.module.b.CallAppActivity;
  * Created by Zhuliya on 2018/9/17
  */
 @JudyBridge
-public class ModuleBJudy implements KeepSource{
+public class ModuleBJudy implements KeepSource {
 
     /**
      * 进入CallAppActivity
@@ -20,6 +22,15 @@ public class ModuleBJudy implements KeepSource{
      * @param activity
      */
     public void forwordCallAppActivity(Activity activity) {
-        activity.startActivity(new Intent(activity, CallAppActivity.class));
+
+        if (JudyTest.isLogin()) {
+            Intent intent = new Intent(activity, CallAppActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //进入个人中心
+            activity.startActivity(intent);
+        } else {
+            //未登录，先进入登录页面
+            JudyHelper.getLoginJudyBridge().forwrodLogin(activity, CallAppActivity.class.getName());
+        }
     }
 }

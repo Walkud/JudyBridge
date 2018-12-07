@@ -56,14 +56,20 @@ public class TypeUtil {
     /**
      * 验证类型是否匹配
      * <p>
-     * 判断：有效类型包含 . 则全匹配 否则后缀匹配
+     * 判断：有效类型包含 . 则全匹配或截取再后缀匹配 否则直接后缀匹配
      *
      * @param typeSet 有效类型
      * @param name    导入类型
      * @return
      */
     private static boolean isVaild(String typeSet, String name) {
-        return (typeSet.contains(".") && name.equals(typeSet)) || name.endsWith("." + typeSet);
+        if (typeSet.contains(".")) {
+            String prefixType = typeSet.substring(0, typeSet.lastIndexOf("."));
+
+            return name.equals(typeSet) || name.endsWith("." + prefixType);
+        }
+
+        return name.endsWith("." + typeSet);
     }
 
     /**

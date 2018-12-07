@@ -26,7 +26,7 @@ public class JudyLogInterceptor implements Interceptor {
         sb.append(serviceMethod.getMethod().getName());
         sb.append("\n");
         sb.append("Args:");
-        Object[] args = serviceMethod.getArgs();
+        Object[] args = chain.getArgs();
 
         if (args == null) {
             sb.append("无");

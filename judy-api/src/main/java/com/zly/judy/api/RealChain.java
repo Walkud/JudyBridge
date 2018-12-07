@@ -11,17 +11,19 @@ public class RealChain implements Interceptor.Chain {
 
     private List<Interceptor> interceptors;
     private ServiceMethod serviceMethod;//当前服务类方法
+    private Object[] args;//实际调用方法的实参
     private int index;//当前拦截器下标
 
     private RealChain chain;//next Chain
 
-    public RealChain(List<Interceptor> interceptors, ServiceMethod serviceMethod) {
-        this(interceptors, serviceMethod, 0);
+    public RealChain(List<Interceptor> interceptors, ServiceMethod serviceMethod, Object[] args) {
+        this(interceptors, serviceMethod, args, 0);
     }
 
-    public RealChain(List<Interceptor> interceptors, ServiceMethod serviceMethod, int index) {
+    public RealChain(List<Interceptor> interceptors, ServiceMethod serviceMethod, Object[] args, int index) {
         this.interceptors = interceptors;
         this.serviceMethod = serviceMethod;
+        this.args = args;
         this.index = index;
     }
 
@@ -49,7 +51,17 @@ public class RealChain implements Interceptor.Chain {
                     + " only call proceed() exactly once");
         }
 
-        chain = new RealChain(interceptors, serviceMethod, index + 1);
+        chain = new RealChain(interceptors, serviceMethod, args, index + 1);
         return interceptors.get(index).intercept(chain);
+    }
+
+    /**
+     * 获取实际调用的实参
+     *
+     * @return 返回实际调用方法的实参
+     */
+    @Override
+    public Object[] getArgs() {
+        return args;
     }
 }

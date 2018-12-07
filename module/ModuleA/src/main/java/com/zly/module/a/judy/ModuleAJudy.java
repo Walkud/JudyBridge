@@ -3,6 +3,7 @@ package com.zly.module.a.judy;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 
 import com.zly.judy.api.KeepSource;
 import com.zly.judy.api.annontations.JudyBridge;
@@ -11,6 +12,9 @@ import com.zly.judy.lib.common.JudyTest;
 import com.zly.judy.lib.common.annontations.ClassAnn;
 import com.zly.module.a.ModuleAFragment;
 import com.zly.module.a.UserCenterActivity;
+import com.zly.module.a.adapter.BridgeAdapter;
+
+import java.util.List;
 
 /**
  * 模块A对外暴露的服务
@@ -44,5 +48,16 @@ public class ModuleAJudy implements KeepSource {
      */
     public Fragment getModuleAFragment() {
         return new ModuleAFragment();
+    }
+
+    /**
+     * 获取BridgeAdapter
+     *
+     * @param context
+     * @param data
+     * @return
+     */
+    public RecyclerView.Adapter getBridgeAdapter(Context context, List<String> data) {
+        return new BridgeAdapter(context, data);
     }
 }

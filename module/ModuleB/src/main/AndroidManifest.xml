@@ -11,5 +11,8 @@
         <activity
             android:name=".activity.ModuleBModelActivity"
             android:label="模块B 查询用户余额" />
+        <activity
+            android:name=".activity.TestBridgeAdapterActivity"
+            android:label="模块B 测试模块A中BridgeAdapter" />
     </application>
 </manifest>

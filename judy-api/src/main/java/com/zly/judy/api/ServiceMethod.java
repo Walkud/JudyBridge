@@ -12,10 +12,8 @@ public class ServiceMethod<T> {
 
     private Class<?> cls;//目标服务类Class
     private Method method;//目标服务类方法
-    private Object[] args;//调用实参
 
-    ServiceMethod(Method method, Object[] args) {
-        this.args = args;
+    ServiceMethod(Method method) {
         //拿到中间层接口的目标服务类Class
         TargetClass targetClass = method.getDeclaringClass().getAnnotation(TargetClass.class);
 
@@ -46,7 +44,7 @@ public class ServiceMethod<T> {
     }
 
     @SuppressWarnings("unchecked")
-    T invoke() {
+    T invoke(Object[] args) {
         try {
             return (T) method.invoke(cls.newInstance(), args);
         } catch (Exception e) {
@@ -71,15 +69,6 @@ public class ServiceMethod<T> {
      */
     public Method getMethod() {
         return method;
-    }
-
-    /**
-     * 获取调用实参
-     *
-     * @return 返回调用实参
-     */
-    public Object[] getArgs() {
-        return args;
     }
 
 }

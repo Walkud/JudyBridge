@@ -9,6 +9,6 @@ public class CallMethodInterceptor implements Interceptor {
     @Override
     public Object intercept(Chain chain) {
         //调用服务类方法
-        return chain.getServiceMethod().invoke();
+        return chain.getServiceMethod().invoke(chain.getArgs());
     }
 }

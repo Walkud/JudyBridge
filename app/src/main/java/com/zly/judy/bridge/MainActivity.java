@@ -10,6 +10,7 @@ import com.zly.judy.lib.base.BaseActivity;
 import com.zly.judy.lib.common.JudyHelper;
 import com.zly.judy.lib.common.JudyTest;
 import com.zly.module.b.FragmentDemoActivity;
+import com.zly.module.b.activity.TestBridgeAdapterActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class MainActivity extends BaseActivity {
 
-    private List<String> list = Arrays.asList("登录", "个人中心", "模块B使用其它模块视图", "模块B调用app服务", "进入模块C主页");
+    private List<String> list = Arrays.asList("登录", "个人中心", "模块B使用其它模块视图", "模块B调用app服务", "模块B 获取BridgeAdapter", "进入模块C主页");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,10 @@ public class MainActivity extends BaseActivity {
                     case 3://模块B调用app服务
                         JudyHelper.getModuleBJudyBridge().forwordCallAppActivity(MainActivity.this);
                         break;
-                    case 4://进入模块C主页
+                    case 4://模块B调用app服务
+                        forword(TestBridgeAdapterActivity.class);
+                        break;
+                    case 5://进入模块C主页
                         JudyHelper.getModuleCJudyBridge().forwordModuleCActivity(MainActivity.this);
                         break;
                 }
